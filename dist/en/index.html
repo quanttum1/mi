@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>jan Luna Wani</title>
+
+    <style>
+
+      @media {
+        :root {
+          --bg: #0f172a;
+          --text: #d9d2cf;
+          --muted: #9ca3af;
+          --accent: #818cf8;
+          --card: #111827;
+          --border: #99928f;
+        }
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      @font-face {
+        font-family: agaveNerd;
+        src: url(/fonts/AgaveNerdFontMono-Regular.ttf);
+      }
+
+      @font-face {
+        font-family: nasinNanpa;
+        src: url(/fonts/nasin-nanpa-4.0.2-UCSUR.otf);
+      }
+
+      body {
+        margin: 0;
+        font-family: nasinNanpa, agaveNerd;
+        font-size: 1.1rem;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+      }
+
+      .container {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 2rem 1.5rem;
+      }
+
+      header {
+        margin-bottom: 2.5rem;
+      }
+
+      h1 {
+        font-size: 2.2rem;
+        margin: 0 0 0.3rem;
+      }
+
+      .subtitle {
+        color: var(--muted);
+        font-size: 1.1rem;
+      }
+
+      section {
+        margin-top: 2.5rem;
+      }
+
+      h1 {
+        margin-bottom: 0.75rem;
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 0.25rem;
+      }
+
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      footer {
+        margin-top: 3rem;
+        font-size: 0.9rem;
+        color: var(--muted);
+        text-align: center;
+      }
+
+      header {
+        font-size: 3rem;
+        text-align: center;
+        margin-bottom: 0.75rem;
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 0.25rem;
+      }
+
+      .links a {
+        margin-right: 1rem;
+      }
+
+      #heart {
+        display: inline;
+        height: 1em;
+      }
+
+      header > a {
+        color: #f285aa;
+      }
+
+      h2 {
+        margin: 0;
+      }
+
+      ul {
+        margin-top: 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <header>
+        <a href="/en">
+          󱤑󱦐󱤭󱦜󱤽󱦜󱦑󱦐󱥳󱦝󱤌󱦑 <img id="heart" src="/images/heart.png" alt="💖">
+        </a>
+      </header>
+
+      
+
+      
+
+      
+        <p>
+          hii! my toki pona name is jan Luna Wani. i also sometimes use these nicknames online:
+          Quantiie, Quantt, Quantum One etc
+          i'm <span id="ageSpan"></span> years old
+        </p>
+      
+
+      <section>
+        
+        <h2>things that i like:</h2>
+        <ul>
+          
+          programming, toki pona, open-source/volunteering, tea, drawing, flowers, cute plushies, cute animals, music
+        </ul>
+      </section>
+
+      <section>
+        
+        <h2>big projects of mine:</h2>
+        <ul>
+          
+          <li>since 2026, i develop and maintain <a href="https://neome-app.com">the NEOME app</a></li>
+        </ul>
+      </section>
+
+      <section>
+        
+        <h2>other pages</h2>
+
+        <ul>
+          
+          <li><a href="pali-suno.html">today i did</a>: i try to make daily updates to it</li>
+
+          
+          <li><a href="kalama-musi-pona.html">my playlist</a>: the list of songs that i listen a lot to</li>
+
+          
+          <li><a href="jan-pona.html">good channels</a>: the list of channels i follow on YouTube</li>
+        </ul>
+      </section>
+
+      <section>
+        
+        <h2>contact me:</h2>
+        <ul>
+          
+          <li>you can <a href="https://discord.gg/ejAuWq5u">join my discord server</a>, i am @quantiie on discord</li>
+
+          
+          <li>i am <a href="https://t.me/quantiie">@quantiie on Telegram</a></li>
+
+          <li><img src="/images/email/en.png" alt="mi ken ala pana e ni: lon seme la sina ken pana e lipu kepeken ilo sona tawa mi :( tan li ni: ilo ala li ken pana e jaki tawa mi"></li>
+        </ul>
+      </section>
+
+      <section>
+        <p>
+          󱥄󱤈󱥔󱤼 🫶
+        </p>
+      </section>
+    </div>
+
+    <script>
+    function smallerThan5(n) {
+      if (n >= 5) throw new Error("n must be < 5");
+      let result = [];
+
+      while (n > 1) {
+        result.push('󱥮');
+        n -= 2;
+      }
+
+      if (n === 1) {
+        result.push('󱥳');
+      }
+
+      return result;
+    }
+
+    function smallerThan20(n) {
+      if (n >= 20) throw new Error("n must be < 20");
+      let result = [];
+
+      let beforeLuka = Math.floor(n / 5);
+      if (beforeLuka > 1) {
+        result = result.concat(smallerThan5(beforeLuka));
+      }
+      if (beforeLuka) {
+        result.push('󱤭');
+      }
+
+      result = result.concat(smallerThan5(n % 5));
+      return result;
+    }
+
+    function toNnppl(n) {
+      let result = [];
+
+      if (n >= 100) {
+        result.push(toNnppl(Math.floor(n / 100)));
+        result.push('󱤄');
+      }
+
+      n %= 100;
+
+      let beforeMute = Math.floor(n / 20);
+      if (beforeMute > 1) {
+        result = result.concat(smallerThan5(beforeMute));
+      }
+      if (beforeMute) {
+        result.push('󱤼');
+      }
+
+      result = result.concat(smallerThan20(n % 20));
+
+      if (result.length === 0) result = ['󱤂'];
+      return result.join('');
+    }
+
+    let birthday = new Date("2007-08-29");
+    let now = new Date();
+    let age = Math.floor((now - birthday) / (365.25 * 24 * 60 * 60 * 1000));
+    
+    ageSpan.innerText = age;
+    </script>
+  </body>
+</html>
+
