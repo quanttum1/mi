@@ -1,13 +1,18 @@
 rm -rf docs
 cp -r public docs
 
+for file in $(find -type f -name "*.html"); do
+  python3 ./layout.py $file docs/${file#./src/} src/layout.html
+done
+
+
 languages=("tok" "en" "ru")
 main_language="tok"
 
-for lang in ${languages[@]}; do
-  mkdir docs/$lang
-  for file in $(find src -type f); do
-    python3 ./translate.py $file docs/$lang/${file#src/} $lang $main_language ${languages[@]}
+for file in $(find docs -type f -name "*.html"); do
+  for lang in ${languages[@]}; do
+    mkdir -p docs/$lang
+    python3 ./translate.py $file docs/$lang/${file#docs/} $lang $main_language ${languages[@]}
   done
 done
 
@@ -17,3 +22,4 @@ for file in docs/**/*.*; do
 done
 
 mv docs/$main_language/* docs
+rm docs/$main_language -r

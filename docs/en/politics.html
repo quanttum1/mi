@@ -1,146 +1,187 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Does social media cause political polarisation?</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>tomi lili mi</title>
 
-  <style>
-    :root {
-      --bg: #ffffff;
-      --text: #1a1a1a;
-      --muted: #666;
-      --accent: #4f46e5;
-      --card: #f5f5f5;
-      --border: #e5e5e5;
-    }
+    <style>
 
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #0f172a;
-        --text: #e5e7eb;
-        --muted: #9ca3af;
-        --accent: #818cf8;
-        --card: #111827;
-        --border: #1f2933;
+      @media {
+        :root {
+          --bg: #0f172a;
+          --text: #d9d2cf;
+          --muted: #9ca3af;
+          --accent: #818cf8;
+          --card: #111827;
+          --border: #99928f;
+        }
       }
-    }
 
-    * {
-      box-sizing: border-box;
-    }
+      * {
+        box-sizing: border-box;
+      }
 
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-    }
+      @font-face {
+        font-family: agaveNerd;
+        src: url(/fonts/AgaveNerdFontMono-Regular.ttf);
+      }
 
-    .container {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 2rem 1.5rem;
-    }
+      @font-face {
+        font-family: nasinNanpa;
+        src: url(/fonts/nasin-nanpa-4.0.2-UCSUR.otf);
+      }
 
-    header {
-      margin-bottom: 2.5rem;
-    }
+      body {
+        margin: 0;
+        font-family: nasinNanpa, agaveNerd;
+        font-size: 1.1rem;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+      }
 
-    h1 {
-      font-size: 2.2rem;
-      margin: 0 0 0.3rem;
-    }
+      .container {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 2rem 1.5rem;
+      }
 
-    .subtitle {
-      color: var(--muted);
-      font-size: 1.1rem;
-    }
+      header {
+        margin-bottom: 2.5rem;
+      }
 
-    section {
-      margin-bottom: 2rem;
-    }
+      h1 {
+        font-size: 2.2rem;
+        margin: 0 0 0.3rem;
+      }
 
-    h1 {
-      margin-bottom: 0.75rem;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 0.25rem;
-    }
+      .subtitle {
+        color: var(--muted);
+        font-size: 1.1rem;
+      }
 
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1rem;
-      margin-bottom: 1rem;
-    }
+      section {
+        margin-top: 2.5rem;
+      }
 
-    a {
-      color: var(--accent);
-      text-decoration: none;
-    }
+      h1 {
+        margin-bottom: 0.75rem;
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 0.25rem;
+      }
 
-    a:hover {
-      text-decoration: underline;
-    }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 1rem;
+        margin-bottom: 1rem;
+      }
 
-    footer {
-      margin-top: 3rem;
-      font-size: 0.9rem;
-      color: var(--muted);
-      text-align: center;
-    }
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
 
-    .links a {
-      margin-right: 1rem;
-    }
-  </style>
-</head>
+      a:hover {
+        text-decoration: underline;
+      }
 
-<body>
-  <div class="container">
-    <section>
-      <h1>Does social media cause political polarisation?</h1>
-      <p>
-        I've been working on my LC Politics & Society research project recently.
-        The question I focused on was basically: is the way modern media works actually pushing people further apart politically? At first, it kind of feels obvious that the answer is yes.
-        We always hear about echo chambers, biased feeds, outrage, all that stuff.
-        And there's definitely truth to it.
-        <br><br>
+      footer {
+        margin-top: 3rem;
+        font-size: 0.9rem;
+        color: var(--muted);
+        text-align: center;
+      }
 
-        A lot of what I found shows that social media algorithms tend to feed us content we already agree with.
-        So over time, your feed becomes more and more one-sided.
-        That's where the idea of "echo chambers" comes from.
-        On top of that, the kind of posts that get the most attention are usually the emotional ones:
-        they cause anger, outrage, fear, which doesn't help calm, balanced discussion.
-        <br><br>
+      header {
+        font-size: 3rem;
+        text-align: center;
+        margin-bottom: 0.75rem;
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 0.25rem;
+      }
 
-        But here's the part that surprised me: even when people are shown opposing views, it doesn't necessarily make them more open-minded.
-        In some studies, it actually made people double down on their original opinions.
-        Instead of thinking "maybe I'm wrong," people tend to argue back in their heads and become even more convinced they're right.
-        <br><br>
+      .links a {
+        margin-right: 1rem;
+      }
 
-        There were also some really interesting experiments where people stopped using platforms like Facebook and Instagram for a few weeks.
-        You'd probably expect that to reduce polarisation.
-        But the results were kind of mixed.
-        People who took a break were less politically active and believed less misinformation, which may sound positive, but they were also less informed about current events.
-        And overall, their core political views didn't really change that much.
-        <br><br>
+      #heart {
+        display: inline;
+        height: 1em;
+      }
 
-        Even more surprising, in one study from a very divided society, people who stayed on social media actually had slightly better attitudes towards other groups than those who left.
-        That suggests social media can sometimes expose people to different perspectives in a way they wouldn't normally experience offline.
-        <br><br>
+      header > a {
+        color: #f285aa;
+      }
 
-        So the main thing I've taken away is that it's not as simple as "social media = bad".
-        It definitely can increase division, especially because of algorithms and emotional content.
-        But it's not the only factor, and in some cases it can even have the opposite effect.
-        <br><br>
+      h2 {
+        margin: 0;
+      }
 
-        I guess the best way to think about it is that social media is just a really powerful tool.
-        It can push people apart or bring them closer together depending on how it's used, what content is being shared, and the kind of environment people are in.
-      </p>
-    </section>
-  </div>
-</body>
+      ul {
+        margin-top: 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+
+      <header>
+        <a href="/en">
+          󱤑󱦐󱤭󱦜󱤽󱦜󱦑󱦐󱥳󱦝󱤌󱦑 <img id="heart" src="/images/heart.png" alt="💖">
+        </a>
+      </header>
+
+      
+
+<h2>Does social media cause political polarisation?</h2>
+
+<section>
+  <p>
+    I've been working on my LC Politics & Society research project recently.
+    The question I focused on was basically: is the way modern media works actually pushing people further apart politically? At first, it kind of feels obvious that the answer is yes.
+    We always hear about echo chambers, biased feeds, outrage, all that stuff.
+    And there's definitely truth to it.
+    <br><br>
+
+    A lot of what I found shows that social media algorithms tend to feed us content we already agree with.
+    So over time, your feed becomes more and more one-sided.
+    That's where the idea of "echo chambers" comes from.
+    On top of that, the kind of posts that get the most attention are usually the emotional ones:
+    they cause anger, outrage, fear, which doesn't help calm, balanced discussion.
+    <br><br>
+
+    But here's the part that surprised me: even when people are shown opposing views, it doesn't necessarily make them more open-minded.
+    In some studies, it actually made people double down on their original opinions.
+    Instead of thinking "maybe I'm wrong," people tend to argue back in their heads and become even more convinced they're right.
+    <br><br>
+
+    There were also some really interesting experiments where people stopped using platforms like Facebook and Instagram for a few weeks.
+    You'd probably expect that to reduce polarisation.
+    But the results were kind of mixed.
+    People who took a break were less politically active and believed less misinformation, which may sound positive, but they were also less informed about current events.
+    And overall, their core political views didn't really change that much.
+    <br><br>
+
+    Even more surprising, in one study from a very divided society, people who stayed on social media actually had slightly better attitudes towards other groups than those who left.
+    That suggests social media can sometimes expose people to different perspectives in a way they wouldn't normally experience offline.
+    <br><br>
+
+    So the main thing I've taken away is that it's not as simple as "social media = bad".
+    It definitely can increase division, especially because of algorithms and emotional content.
+    But it's not the only factor, and in some cases it can even have the opposite effect.
+    <br><br>
+
+    I guess the best way to think about it is that social media is just a really powerful tool.
+    It can push people apart or bring them closer together depending on how it's used, what content is being shared, and the kind of environment people are in.
+  </p>
+</section>
+
+    </div>
+  </body>
 </html>
+
+

@@ -1,280 +1,143 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>jan Luna Wani</title>
+%LAYOUT%
 
-    <style>
+tok{
+  <i>
+    if you don't know toki pona, <a href="/en">go here</a> or
+    <a href="https://wasona.com/" target="_blank" rel="noopener noreferrer">learn it</a> :)
+  </i>
+}
 
-      @media {
-        :root {
-          --bg: #0f172a;
-          --text: #d9d2cf;
-          --muted: #9ca3af;
-          --accent: #818cf8;
-          --card: #111827;
-          --border: #99928f;
-        }
-      }
+tok{
+  <p>
+    u{o lukin a  mi jan Luna Wani   ma pi ilo sona la mi kepeken kin nimi ni:}
+    Quantiie u{anu} Quantt u{anu} Quantum One u{anu nimi ante sama ona  }
+    u{mi pini e tenpo sike suno}<span id="ageSpan"></span>
+  </p>
+}
 
-      * {
-        box-sizing: border-box;
-      }
+en{
+  <p>
+    hii! my toki pona name is jan Luna Wani. i also sometimes use these nicknames online:
+    Quantiie, Quantt, Quantum One etc
+    i'm <span id="ageSpan"></span> years old
+  </p>
+}
 
-      @font-face {
-        font-family: agaveNerd;
-        src: url(/fonts/AgaveNerdFontMono-Regular.ttf);
-      }
+<section>
+  tok{<h2>u{ijo ni li pona tawa mi:}</h2>}
+  en{<h2>things that i like:</h2>}
+  <ul>
+    tok{u{toki tawa ilo sona  toki+pona  pali pi mani ala tan pona  telo kasi pimeja  sitelen tan luka  kasi kule  ko musi suwi  soweli suwi  kalama musi}}
+    en{programming, toki pona, open-source/volunteering, tea, drawing, flowers, cute plushies, cute animals, music}
+  </ul>
+</section>
 
-      @font-face {
-        font-family: nasinNanpa;
-        src: url(/fonts/nasin-nanpa-4.0.2-UCSUR.otf);
-      }
+<section>
+  tok{<h2>u{pali suli mi:}</h2>}
+  en{<h2>big projects of mine:</h2>}
+  <ul>
+    tok{<li>u{open li tenpo sike suno mute ale mute luka wan la mi pali e}<a href="https://neome-app.com">u{ilo Nejomi}</a></li>}
+    en{<li>since 2026, i develop and maintain <a href="https://neome-app.com">the NEOME app</a></li>}
+  </ul>
+</section>
 
-      body {
-        margin: 0;
-        font-family: nasinNanpa, agaveNerd;
-        font-size: 1.1rem;
-        background: var(--bg);
-        color: var(--text);
-        line-height: 1.6;
-      }
+<section>
+  tok{<h2>u{lon kulupu lipu ni la:}</h2>}
+  en{<h2>other pages</h2>}
 
-      .container {
-        max-width: 720px;
-        margin: 0 auto;
-        padding: 2rem 1.5rem;
-      }
+  <ul>
+    tok{<li><a href="pali-suno.html">u{tenpo suno ni la mi pali e ni}</a>u{: mi alasa pana e ijo lon tenpo suno ale}</li>}
+    en{<li><a href="pali-suno.html">today i did</a>: i try to make daily updates to it</li>}
 
-      header {
-        margin-bottom: 2.5rem;
-      }
+    tok{<li><a href="kalama-musi-pona.html">u{kalama musi}</a>u{: kalama musi ni li pona tawa mi}</li>}
+    en{<li><a href="kalama-musi-pona.html">my playlist</a>: the list of songs that i listen a lot to</li>}
 
-      h1 {
-        font-size: 2.2rem;
-        margin: 0 0 0.3rem;
-      }
+    tok{<li><a href="jan-pona.html">u{jan pona pi ilo Jutu}</a>u{: jan ni li pana e sitelen tawa pona lon ilo Jutu}</li>}
+    en{<li><a href="jan-pona.html">good channels</a>: the list of channels i follow on YouTube</li>}
+  </ul>
+</section>
 
-      .subtitle {
-        color: var(--muted);
-        font-size: 1.1rem;
-      }
+<section>
+  tok{<h2>u{nasin ni la sina ken toki tawa mi:}</h2>}
+  en{<h2>contact me:</h2>}
+  <ul>
+    tok{<li><a href="https://discord.gg/ejAuWq5u">u{o tawa ma mi lon ilo Siko}</a>u{la mi} @quantiie</li>}
+    en{<li>you can <a href="https://discord.gg/ejAuWq5u">join my discord server</a>, i am @quantiie on discord</li>}
 
-      section {
-        margin-top: 2.5rem;
-      }
+    tok{<li>u{mi}<a href="https://t.me/quantiie">@quantiie u{lon ilo Teleka}</a></li>}
+    en{<li>i am <a href="https://t.me/quantiie">@quantiie on Telegram</a></li>}
 
-      h1 {
-        margin-bottom: 0.75rem;
-        border-bottom: 1px solid var(--border);
-        padding-bottom: 0.25rem;
-      }
+    <li><img src="/images/email/%LANG%.png" alt="mi ken ala pana e ni: lon seme la sina ken pana e lipu kepeken ilo sona tawa mi :( tan li ni: ilo ala li ken pana e jaki tawa mi"></li>
+  </ul>
+</section>
 
-      .card {
-        background: var(--card);
-        border: 1px solid var(--border);
-        border-radius: 10px;
-        padding: 1rem;
-        margin-bottom: 1rem;
-      }
+<section>
+  <p>
+    u{o awen pona mute} 🫶
+  </p>
+</section>
 
-      a {
-        color: var(--accent);
-        text-decoration: none;
-      }
+<script>
+function smallerThan5(n) {
+  if (n >= 5) throw new Error("n must be < 5");
+  let result = [];
 
-      a:hover {
-        text-decoration: underline;
-      }
+  while (n > 1) {
+    result.push('u{tu}');
+    n -= 2;
+  }
 
-      footer {
-        margin-top: 3rem;
-        font-size: 0.9rem;
-        color: var(--muted);
-        text-align: center;
-      }
+  if (n === 1) {
+    result.push('u{wan}');
+  }
 
-      header {
-        font-size: 3rem;
-        text-align: center;
-        margin-bottom: 0.75rem;
-        border-bottom: 1px solid var(--border);
-        padding-bottom: 0.25rem;
-      }
+  return result;
+}
 
-      .links a {
-        margin-right: 1rem;
-      }
+function smallerThan20(n) {
+  if (n >= 20) throw new Error("n must be < 20");
+  let result = [];
 
-      #heart {
-        display: inline;
-        height: 1em;
-      }
+  let beforeLuka = Math.floor(n / 5);
+  if (beforeLuka > 1) {
+    result = result.concat(smallerThan5(beforeLuka));
+  }
+  if (beforeLuka) {
+    result.push('u{luka}');
+  }
 
-      header > a {
-        color: #f285aa;
-      }
+  result = result.concat(smallerThan5(n % 5));
+  return result;
+}
 
-      h2 {
-        margin: 0;
-      }
+function toNnppl(n) {
+  let result = [];
 
-      ul {
-        margin-top: 0;
-      }
-    </style>
-  </head>
+  if (n >= 100) {
+    result.push(toNnppl(Math.floor(n / 100)));
+    result.push('u{ale}');
+  }
 
-  <body>
-    <div class="container">
-      <header>
-        <a href="/%LANG_OR_BLANK%">
-          u{jan Luna Wani} <img id="heart" src="/images/heart.png" alt="💖">
-        </a>
-      </header>
+  n %= 100;
 
-      tok{
-        <i>
-          if you don't know toki pona, <a href="/en">go here</a> or
-          <a href="https://wasona.com/" target="_blank" rel="noopener noreferrer">learn it</a> :)
-        </i>
-      }
+  let beforeMute = Math.floor(n / 20);
+  if (beforeMute > 1) {
+    result = result.concat(smallerThan5(beforeMute));
+  }
+  if (beforeMute) {
+    result.push('u{mute}');
+  }
 
-      tok{
-        <p>
-          u{o lukin a  mi jan Luna Wani   ma pi ilo sona la mi kepeken kin nimi ni:}
-          Quantiie u{anu} Quantt u{anu} Quantum One u{anu nimi ante sama ona  }
-          u{mi pini e tenpo sike suno}<span id="ageSpan"></span>
-        </p>
-      }
+  result = result.concat(smallerThan20(n % 20));
 
-      en{
-        <p>
-          hii! my toki pona name is jan Luna Wani. i also sometimes use these nicknames online:
-          Quantiie, Quantt, Quantum One etc
-          i'm <span id="ageSpan"></span> years old
-        </p>
-      }
+  if (result.length === 0) result = ['u{ala}'];
+  return result.join('');
+}
 
-      <section>
-        tok{<h2>u{ijo ni li pona tawa mi:}</h2>}
-        en{<h2>things that i like:</h2>}
-        <ul>
-          tok{u{toki tawa ilo sona  toki+pona  pali pi mani ala tan pona  telo kasi pimeja  sitelen tan luka  kasi kule  ko musi suwi  soweli suwi  kalama musi}}
-          en{programming, toki pona, open-source/volunteering, tea, drawing, flowers, cute plushies, cute animals, music}
-        </ul>
-      </section>
-
-      <section>
-        tok{<h2>u{pali suli mi:}</h2>}
-        en{<h2>big projects of mine:</h2>}
-        <ul>
-          tok{<li>u{open li tenpo sike suno mute ale mute luka wan la mi pali e}<a href="https://neome-app.com">u{ilo Nejomi}</a></li>}
-          en{<li>since 2026, i develop and maintain <a href="https://neome-app.com">the NEOME app</a></li>}
-        </ul>
-      </section>
-
-      <section>
-        tok{<h2>u{lon kulupu lipu ni la:}</h2>}
-        en{<h2>other pages</h2>}
-
-        <ul>
-          tok{<li><a href="pali-suno.html">u{tenpo suno ni la mi pali e ni}</a>u{: mi alasa pana e ijo lon tenpo suno ale}</li>}
-          en{<li><a href="pali-suno.html">today i did</a>: i try to make daily updates to it</li>}
-
-          tok{<li><a href="kalama-musi-pona.html">u{kalama musi}</a>u{: kalama musi ni li pona tawa mi}</li>}
-          en{<li><a href="kalama-musi-pona.html">my playlist</a>: the list of songs that i listen a lot to</li>}
-
-          tok{<li><a href="jan-pona.html">u{jan pona pi ilo Jutu}</a>u{: jan ni li pana e sitelen tawa pona lon ilo Jutu}</li>}
-          en{<li><a href="jan-pona.html">good channels</a>: the list of channels i follow on YouTube</li>}
-        </ul>
-      </section>
-
-      <section>
-        tok{<h2>u{nasin ni la sina ken toki tawa mi:}</h2>}
-        en{<h2>contact me:</h2>}
-        <ul>
-          tok{<li><a href="https://discord.gg/ejAuWq5u">u{o tawa ma mi lon ilo Siko}</a>u{la mi} @quantiie</li>}
-          en{<li>you can <a href="https://discord.gg/ejAuWq5u">join my discord server</a>, i am @quantiie on discord</li>}
-
-          tok{<li>u{mi}<a href="https://t.me/quantiie">@quantiie u{lon ilo Teleka}</a></li>}
-          en{<li>i am <a href="https://t.me/quantiie">@quantiie on Telegram</a></li>}
-
-          <li><img src="/images/email/%LANG%.png" alt="mi ken ala pana e ni: lon seme la sina ken pana e lipu kepeken ilo sona tawa mi :( tan li ni: ilo ala li ken pana e jaki tawa mi"></li>
-        </ul>
-      </section>
-
-      <section>
-        <p>
-          u{o awen pona mute} 🫶
-        </p>
-      </section>
-    </div>
-
-    <script>
-    function smallerThan5(n) {
-      if (n >= 5) throw new Error("n must be < 5");
-      let result = [];
-
-      while (n > 1) {
-        result.push('u{tu}');
-        n -= 2;
-      }
-
-      if (n === 1) {
-        result.push('u{wan}');
-      }
-
-      return result;
-    }
-
-    function smallerThan20(n) {
-      if (n >= 20) throw new Error("n must be < 20");
-      let result = [];
-
-      let beforeLuka = Math.floor(n / 5);
-      if (beforeLuka > 1) {
-        result = result.concat(smallerThan5(beforeLuka));
-      }
-      if (beforeLuka) {
-        result.push('u{luka}');
-      }
-
-      result = result.concat(smallerThan5(n % 5));
-      return result;
-    }
-
-    function toNnppl(n) {
-      let result = [];
-
-      if (n >= 100) {
-        result.push(toNnppl(Math.floor(n / 100)));
-        result.push('u{ale}');
-      }
-
-      n %= 100;
-
-      let beforeMute = Math.floor(n / 20);
-      if (beforeMute > 1) {
-        result = result.concat(smallerThan5(beforeMute));
-      }
-      if (beforeMute) {
-        result.push('u{mute}');
-      }
-
-      result = result.concat(smallerThan20(n % 20));
-
-      if (result.length === 0) result = ['u{ala}'];
-      return result.join('');
-    }
-
-    let birthday = new Date("2007-08-29");
-    let now = new Date();
-    let age = Math.floor((now - birthday) / (365.25 * 24 * 60 * 60 * 1000));
-    tok{ageSpan.innerText = toNnppl(age);}
-    en{ageSpan.innerText = age;}
-    </script>
-  </body>
-</html>
+let birthday = new Date("2007-08-29");
+let now = new Date();
+let age = Math.floor((now - birthday) / (365.25 * 24 * 60 * 60 * 1000));
+tok{ageSpan.innerText = toNnppl(age);}
+en{ageSpan.innerText = age;}
+</script>
 
