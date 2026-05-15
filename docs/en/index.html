@@ -123,6 +123,82 @@
       ul {
         margin-top: 0;
       }
+
+      .button {
+        width: 88px;
+        height: 31px;
+        box-shadow: 0.15em 0.15em 0 0 #000;
+        image-rendering: pixelated;
+        text-decoration: none;
+        transition: transform 0.03s ease-in-out,
+                    box-shadow 0.03s ease-in-out,
+                    filter 0.03s ease-in-out;
+      }
+
+      .button:hover {
+        /* filter: brightness(1.1); */
+        /* scale: 1.1; */
+        transform: translate(-0.15em, -0.15em);
+        box-shadow: 0.3em 0.3em 0 0 #000;
+      }
+
+      .button:active {
+        box-shadow: 0 0 0 0 #000;
+        transform: translate(0.15em, 0.15em);
+        /* filter: brightness(0.9); */
+      }
+
+      @media (max-width: 470px) {
+        .button {
+          width: 66px;
+          height: 31px;
+        }
+      }
+
+      @media (min-width: 600px) {
+        .button {
+          width: 110px;
+          height: 38.75px;
+        }
+      }
+
+      @media (min-width: 900px) {
+        .button {
+          width: 132px;
+          height: 46.5px;
+        }
+      }
+
+      @media (min-width: 1200px) {
+        .button {
+          width: 176px;
+          height: 62px;
+        }
+      }
+      @media (min-width: 1500px) {
+        .button {
+          width: 220px;
+          height: 77.5px;
+        }
+      }
+
+      @media (min-width: 1800px) {
+        .button {
+          width: 264px;
+          height: 93px;
+        }
+      }
+
+      #buttons {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+      }
+
+      #sike {
+        display: flex;
+        justify-content: center;
+      }
     </style>
   </head>
 
@@ -267,6 +343,33 @@ ageSpan.innerText = age;
         <p>
           󱥄󱤈󱥔󱤼 🫶
         </p>
+        <div id="buttons">
+          <a href="https://discord.gg/bFBzkvAWqc">
+            <img src="https://mun.la/buttons/mapona_s.gif" alt="ma pona pi toki pona, a toki pona community on Discord" class="button">
+          </a>
+
+          <a href="https://discord.gg/W2HJZxPrQ8">
+            <img src="https://mun.la/buttons/kamasona_s.gif" alt="kama sona, a toki pona community on Discord" class="button">
+          </a>
+
+          <a href="https://discord.gg/5AVHaJfKQ3">
+            <img src="https://mun.la/buttons/mamun_s.gif" alt="ma mun, a toki pona community on Discord" class="button">
+          </a>
+        </div>
+        <div>
+        </div>
+
+        <div id="sike">
+          <div style="position:relative; width:88px;">
+            <img src="https://sike.pona.la/assets/sike-pona.gif" style="width:100%; height:auto; image-rendering:pixelated; display:block;" alt="sike pona">
+            <a href="https://sike.pona.la/jan/jan_luna_wani/prev.html"
+               style="position:absolute; left:9%; top:19%; width:23%; height:65%;"></a>
+            <a href="https://sike.pona.la/"
+               style="position:absolute; left:39%; top:19%; width:24%; height:65%;"></a>
+            <a href="https://sike.pona.la/jan/jan_luna_wani/next.html"
+               style="position:absolute; left:69%; top:19%; width:23%; height:65%;"></a>
+          </div>
+        </div>
       </section>
     </div>
   </body>
