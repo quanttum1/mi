@@ -10,7 +10,7 @@ def sitelen_ucsur(s):
     ).stdout
 
 if len(sys.argv) != 3:
-    print("o kepeken nasin ni: python3 compile.py <input> <output>")
+    print("o kepeken nasin ni: python3 ucsur.py <input> <output>")
 
 try:
     src = open(sys.argv[1]).read()
