@@ -32,7 +32,7 @@
         src: url(/fonts/nasin-nanpa-4.0.2-UCSUR.otf);
       }
 
-      body {
+      html, body {
         margin: 0;
         font-family: nasinNanpa, agaveNerd;
         font-size: 1.1rem;
@@ -213,8 +213,108 @@
 
       
 
-mi awen pali e lipu ni :(
+<div id="container">
+    
+        󱤪󱥁󱤡󱥄󱤮󱤉󱤑󱥔󱥍󱤎󱦐󱤐󱥯󱥮󱦝󱦑　󱥠󱥩󱥆󱤧󱥔　󱤴󱤮󱤉󱥆　󱤼󱥆󱤧󱥬󱦐󱤏󱦜󱤧󱦝󱦑
+    
+    
 
+    <ul id="channelsElement"></ul>
+
+</div>
+
+<script>
+    let historyTag =  "󱥡󱥍󱥫󱥐";
+    let russianTag =  "󱥬󱦐󱤭󱦜󱥛󱦜󱦑";
+    let scienceTag =  "󱥡";
+    let psychologyTag =  "󱥡󱥍󱤤󱤑";
+    let biologyTag =  "󱥡󱥍󱥢󱥍󱤗󱥍󱤌󱤆󱥖󱥆";
+    let investigationTag =  "󱤃󱥡";
+    let englishTag =  "󱥬󱦐󱤏󱦜󱤧󱦝󱦑";
+    let mathsTag =  "󱥡󱤽";
+    let chemistryTag =  "󱥡󱥍󱤿󱤨";
+    let physicsTag =  "󱥡󱤬";
+    let politicsTag =  "󱥡󱥍󱤤󱤰";
+    let aiTag =  "󱥡󱥍󱤑󱤂";
+    let ukrainianTag =  "󱥬󱦐󱥯󱤔󱦜󱥷󱦜󱤽󱦜󱦑";
+    let programmingTag =  "󱥬󱥍󱤎󱥡";
+    let engineeringTag =  "󱥉󱤻";
+    let linguisticsTag =  "󱥡󱥬";
+    let personalChannelTag =  "󱤪󱤑";
+    let astronomyTag =  "󱥡󱥍󱤺";
+
+    let channels = [
+        {name: "Мудреныч", id: "UCGLsHbMw8WCOB6tu0sKyG9w", tags: [russianTag, historyTag]},
+        {name: "Onigiri", id: "UCzdmz_lLWT_dPqOvFjXAMVg", tags: [russianTag, programmingTag]},
+        {name: "SciOne", id: "UCSaVoRErW4kqKsDqExs2MXA", tags: [russianTag, scienceTag]},
+        {name: "Правое полушарие Интроверта", id: "UCWcUsw5EBULSF4Eul0DLULg", tags: [russianTag, psychologyTag]},
+        {name: "Хамибин 2.0", id: "UCOsAqQmUsk5bBl4ydsTNS-g", tags: [russianTag, biologyTag]},
+        {name: "Dagon", id: "UCP_FacffygRMGA4CMpO-0XA", tags: [russianTag, psychologyTag]},
+        {name: "ЧД", id: "UCzdhDZnwLa5_-xUletu1DhQ", tags: [russianTag, psychologyTag]},
+        {name: "Utopia Show", id: "UC8M5YVWQan_3Elm-URehz9w", tags: [russianTag, investigationTag]},
+        {name: "Vectozavr", id: "UCq95P8i1jJLLegYcm0Y2YTw", tags: [russianTag, programmingTag, mathsTag]},
+        {name: "GEO", id: "UCyjf5CxCNEc9ALYlalBiKDQ", tags: [russianTag, historyTag]},
+        {name: "Veritasium", id: "UCHnyfMqiRRG1u-2MsSQLbXA", tags: [englishTag, scienceTag]},
+        {name: "Artur Sharifov", id: "UCxtTXA5DU1bZHLLomu83zVw", tags: [russianTag, russianTag]},
+        {name: "Wild Mathing", id: "UCj0Od_id0gPbmwZ65U8xwrw", tags: [russianTag, mathsTag]},
+        {name: "Thoisoi", id: "UCjAmQ-4NL3UZX0W_nmjn4_w", tags: [russianTag, chemistryTag]},
+        {name: "Физика от Побединского", id: "UCQdPrDypfQeY5euAPbdc11g", tags: [russianTag, physicsTag]},
+        {name: "MyGap", id: "UCCROBQj3rdGNc-E_aMpbV_A", tags: [russianTag, politicsTag]},
+        {name: "Rational Animations", id: "UCgqt1RE0k0MIr0LoyJRy2lg", tags: [englishTag, aiTag]},
+        {name: "Клятий раціоналіст", id: "UCioz7pLeEpBNrFfwHb2m-pA", tags: [ukrainianTag, scienceTag]},
+        {name: "Tsoding Daily", id: "UCrqM0Ym_NbK1fqeQG2VIohg", tags: [englishTag, programmingTag]},
+        {name: "Thoughty2", id: "UCRlICXvO4XR4HMeEB9JjDlA", tags: [englishTag, historyTag, investigationTag]},
+        {name: "Доктор Грег", id: "UC6DxE5GWRxZKwNdcOzV5hWw", tags: [russianTag, scienceTag]},
+        {name: "NileRed", id: "UCFhXFikryT4aFcLkLw2LBLA", tags: [englishTag, chemistryTag]},
+        {name: "NileBlue", id: "UC1D3yD4wlPMico0dss264XA", tags: [englishTag, chemistryTag]},
+        {name: "Integza", id: "UC2avWDLN1EI3r1RZ_dlSxCw", tags: [englishTag, engineeringTag]},
+        {name: "Steve Mould", id: "UCEIwxahdLz7bap-VDs9h35A", tags: [englishTag, scienceTag]},
+        {name: "Kurzgesagt – In a Nutshell", id: "UCsXVk37bltHxD1rDPwtNM8Q", tags: [englishTag, scienceTag]},
+        {name: "Up and Atom", id: "UCSIvk78tK2TiviLQn4fSHaw", tags: [englishTag, physicsTag]},
+        {name: "GEO2", id: "UC3yjMTYgk-OUslwfq6J2Jog", tags: [russianTag, historyTag]},
+        {name: "Robert Miles AI Safety ", id: "UCLB7AzTwc6VFZrBsO2ucBMg", tags: [englishTag, aiTag]},
+        {name: "Mults", id: "UC5YYDtjudfqxGwnJI-32qYQ", tags: [englishTag, programmingTag]},
+        {name: "RobWords", id: "UC4a9LfdavRlVMaSSWFdIciA", tags: [englishTag, linguisticsTag]},
+        {name: "Johnny Harris", id: "UCmGSJVG3mCRXVOP4yZrU1Dw", tags: [englishTag, politicsTag]},
+        {name: "Tom Stanton", id: "UC67gfx2Fg7K2NSHqoENVgwA", tags: [englishTag, engineeringTag]},
+        {name: "Primer", id: "UCKzJFdi57J53Vr_BkTfN3uQ", tags: [englishTag, biologyTag, mathsTag]},
+        {name: "Александр Панчин", id: "UC2q4mHrzoR48mwSuAYtVPtQ", tags: [russianTag, scienceTag]},
+        {name: "LaurieWired", id: "UCJXa3_WNNmIpewOtCHf3B0g", tags: [englishTag, programmingTag]},
+        {name: "Tim Station", id: "UCZYvU-ZWbgl1rJv0trRk_fA", tags: [englishTag, engineeringTag]},
+        {name: "Файб", id: "UCRQPJnq3IFviqmIxb9_5FaQ", tags: [russianTag, historyTag]},
+        {name: "Bread on Penguins", id: "UCwHwDuNd9lCdA7chyyquDXw", tags: [englishTag, personalChannelTag, programmingTag]},
+        {name: "Siliconversations", id: "UCaItA_xyCNvDSf-DLkzClRg", tags: [englishTag, aiTag]},
+        {name: "PerriKaryal", id: "UC_7SR20ovhbKc-k3NwMcgWQ", tags: [englishTag, engineeringTag]},
+        {name: "Александр Штефанов", id: "UCVVNJJXC7TQgPpAjQdgrqNw", tags: [russianTag, politicsTag]},
+        {name: "Филолог всея Руси", id: "UCL6IdMqhSfbZyym_Zio_vOQ", tags: [russianTag, linguisticsTag]},
+        {name: "Virginia Bēowulf · English Studies", id: "UCKMGLK-Inu1lReNdbeYBgOA", tags: [russianTag, linguisticsTag]},
+        {name: "Улица Шкловского", id: "UCUmeLZofGMhO5lVOHUEUU2A", tags: [russianTag, astronomyTag]},
+        {name: "lipamanka", id: "UCelq3xUdjS47C_svPFVRO0g", tags: [englishTag, linguisticsTag]},
+        {name: "Art of the Problem", id: "UCotwjyJnb-4KW7bmsOoLfkg", tags: [englishTag, scienceTag]},
+    ];
+
+    // https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+    function shuffle(array) {
+      let currentIndex = array.length;
+
+      // While there remain elements to shuffle...
+      while (currentIndex != 0) {
+
+        // Pick a remaining element...
+        let randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+
+        // And swap it with the current element.
+        [array[currentIndex], array[randomIndex]] = [
+          array[randomIndex], array[currentIndex]];
+      }
+    }
+
+    shuffle(channels);
+    channelsElement.innerHTML = channels.map(c =>
+        `<li><a href="https://www.youtube.com/channel/${c.id}" target="_blank" rel="noopener noreferrer">${c.name}</a>: ${c.tags.join("  ")}</li>`
+    ).join("\n");
+</script>
 
 
       <section>
