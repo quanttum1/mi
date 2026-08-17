@@ -206,21 +206,150 @@
     <div class="container">
 
       <header>
-        <a href="/%LANG_OR_BLANK%">
-          u{jan Luna Wani} <img id="heart" src="/images/heart.png" alt="💖">
+        <a href="/">
+          󱤑󱦐󱤭󱦜󱤽󱦜󱦑󱦐󱥳󱦝󱤌󱦑 <img id="heart" src="/images/heart.png" alt="💖">
         </a>
       </header>
 
       
 
-u{lipu ni li lon ala}
-<br>
-this page doesn't exist
+
+  <i>
+    if you don't know toki pona, <a href="/en">go here</a> or
+    <a href="https://wasona.com/" target="_blank" rel="noopener noreferrer">learn it</a> :)
+  </i>
+
+
+
+  <p>
+    󱥄󱤮󱤀　󱤴󱤑󱦐󱤭󱦜󱤽󱦜󱦑󱦐󱥳󱦝󱤌󱦑　󱤰󱥍󱤎󱥡󱤡󱤴󱤙󱥹󱥂󱥁󱦝
+    Quantiie 󱤇 Quantt 󱤇 Quantum One 󱤇󱥂󱤆󱥖󱥆　
+    󱤴󱥐󱤉󱥫󱥍󱥜󱥤<span id="ageSpan"></span>
+  </p>
+
+
+
+
+<section>
+  <h2>󱤌󱥁󱤧󱥔󱥩󱤴󱦝</h2>
+  
+  <ul>
+    󱥬󱥍󱤎󱥡　󱥬󱦖󱥔　󱥉󱥍󱤲󱤂󱥧󱥷　󱥪󱤗󱥏　󱥠󱥧󱤭　󱤗󱤞　󱤜󱤻󱥦　󱥢󱥦　󱤕󱤻
+    
+  </ul>
+</section>
+
+<section>
+  <h2>󱥉󱥣󱤴󱦝</h2>
+  
+  <ul>
+    <li>󱥇󱤧󱥫󱥜󱥤󱤼󱤄󱤼󱤭󱥳󱤡󱤴󱥉󱤉<a href="https://neome-app.com" target="_blank" rel="noopener noreferrer">󱤎󱦐󱥀󱦜󱤓󱦝󱤴󱦝󱦑</a></li>
+    
+  </ul>
+</section>
+
+<section>
+  <h2>󱤬󱤟󱤪󱥁󱤡󱦝</h2>
+  
+
+  <ul>
+    <li><a href="pali-suno.html">󱥫󱥤󱤭󱥮󱥁󱤡󱤴󱥉󱤉󱥁</a>󱦝 󱤴󱤃󱥌󱤉󱤌󱥝󱥩󱥁󱤙󱥫󱥤󱤭󱥮</li>
+    
+
+    <li><a href="kalama-musi-pona.html">󱤕󱤻</a>󱦝 󱤕󱤻󱥁󱤧󱥔󱥩󱤴</li>
+    
+
+    <li><a href="jan-pona.html">󱤑󱥔󱥍󱤎󱦐󱤐󱥯󱥮󱦝󱦑</a>󱦝 󱤑󱥁󱤧󱥌󱤉󱥠󱥩󱥔󱤬󱤎󱦐󱤐󱥯󱥮󱦝󱦑</li>
+    
+  </ul>
+</section>
+
+<section>
+  <h2>󱤴󱤬󱤎󱤆󱦝</h2>
+  
+  <ul>
+    <!-- <li><a href="https://discord.gg/ejAuWq5u">󱥄󱥩󱤰󱤴󱤬󱤎󱦐󱥛󱦜󱤜󱦝󱦑</a>󱤡󱤴 @quantiie</li> -->
+    <!--  -->
+
+    <li><a href="https://github.com/quanttum1">󱤴󱤬󱤎󱦐󱤚󱦜󱥧󱦜󱦑</a></li>
+    
+
+    <li>󱤴<a href="https://t.me/quantiie">@quantiie 󱤬󱤎󱦐󱥪󱦜󱤥󱦜󱤔󱦜󱦑</a></li>
+    
+
+    <li><img src="/images/email/tok.png" alt="mi ken ala pana e ni: lon seme la sina ken pana e lipu kepeken ilo sona tawa mi :( tan li ni: ilo ala li ken pana e jaki tawa mi"></li>
+  </ul>
+</section>
+
+<script>
+function smallerThan5(n) {
+  if (n >= 5) throw new Error("n must be < 5");
+  let result = [];
+
+  while (n > 1) {
+    result.push('󱥮');
+    n -= 2;
+  }
+
+  if (n === 1) {
+    result.push('󱥳');
+  }
+
+  return result;
+}
+
+function smallerThan20(n) {
+  if (n >= 20) throw new Error("n must be < 20");
+  let result = [];
+
+  let beforeLuka = Math.floor(n / 5);
+  if (beforeLuka > 1) {
+    result = result.concat(smallerThan5(beforeLuka));
+  }
+  if (beforeLuka) {
+    result.push('󱤭');
+  }
+
+  result = result.concat(smallerThan5(n % 5));
+  return result;
+}
+
+function toNnppl(n) {
+  let result = [];
+
+  if (n >= 100) {
+    result.push(toNnppl(Math.floor(n / 100)));
+    result.push('󱤄');
+  }
+
+  n %= 100;
+
+  let beforeMute = Math.floor(n / 20);
+  if (beforeMute > 1) {
+    result = result.concat(smallerThan5(beforeMute));
+  }
+  if (beforeMute) {
+    result.push('󱤼');
+  }
+
+  result = result.concat(smallerThan20(n % 20));
+
+  if (result.length === 0) result = ['󱤂'];
+  return result.join('');
+}
+
+let birthday = new Date("2007-08-29");
+let now = new Date();
+let age = Math.floor((now - birthday) / (365.25 * 24 * 60 * 60 * 1000));
+ageSpan.innerText = toNnppl(age);
+
+</script>
+
 
 
       <section>
         <p>
-          u{o awen pona mute} 🫶
+          󱥄󱤈󱥔󱤼 🫶
         </p>
         <div id="buttons">
           <a href="https://discord.gg/bFBzkvAWqc" target="_blank" rel="noopener noreferrer">

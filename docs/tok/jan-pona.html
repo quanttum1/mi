@@ -206,7 +206,7 @@
     <div class="container">
 
       <header>
-        <a href="/%LANG_OR_BLANK%">
+        <a href="/">
           u{jan Luna Wani} <img id="heart" src="/images/heart.png" alt="💖">
         </a>
       </header>
@@ -214,34 +214,34 @@
       
 
 <div id="container">
-    tok{u{
+    u{
         lipu ni la o lukin e jan pona pi ilo Jutu  sitelen tawa ona li pona  mi lukin e ona  mute ona li toki Inli
-    }}
-    en{on this page you'll find channels on YouTube that i watch. most of them are in English}
+    }
+    
 
     <ul id="channelsElement"></ul>
 
 </div>
 
 <script>
-    let historyTag = en{"history"} tok{"u{sona pi tenpo pini}"};
-    let russianTag = en{"russian"} tok{"u{toki Lusi}"};
-    let scienceTag = en{"science"} tok{"u{sona}"};
-    let psychologyTag = en{"psychology"} tok{"u{sona pi lawa jan}"};
-    let biologyTag = en{"biology"} tok{"u{sona pi soweli pi kasi pi ijo ante sama ona}"};
-    let investigationTag = en{"investigation"} tok{"u{alasa sona}"};
-    let englishTag = en{"english"} tok{"u{toki Inli}"};
-    let mathsTag = en{"maths"} tok{"u{sona nanpa}"};
-    let chemistryTag = en{"chemistry"} tok{"u{sona pi nasin lili}"};
-    let physicsTag = en{"physics"} tok{"u{sona lon}"};
-    let politicsTag = en{"politics"} tok{"u{sona pi lawa ma}"};
-    let aiTag = en{"ai safety"} tok{"u{sona pi jan ala}"};
-    let ukrainianTag = en{"ukrainian"} tok{"u{toki Ukawina}"};
-    let programmingTag = en{"programming"} tok{"u{toki pi ilo sona}"};
-    let engineeringTag = en{"engineering"} tok{"u{pali musi}"};
-    let linguisticsTag = en{"linguistics"} tok{"u{sona toki}"};
-    let personalChannelTag = en{"personal channel"} tok{"u{lipu jan}"};
-    let astronomyTag = en{"astronomy"} tok{"u{sona pi mun}"};
+    let historyTag =  "u{sona pi tenpo pini}";
+    let russianTag =  "u{toki Lusi}";
+    let scienceTag =  "u{sona}";
+    let psychologyTag =  "u{sona pi lawa jan}";
+    let biologyTag =  "u{sona pi soweli pi kasi pi ijo ante sama ona}";
+    let investigationTag =  "u{alasa sona}";
+    let englishTag =  "u{toki Inli}";
+    let mathsTag =  "u{sona nanpa}";
+    let chemistryTag =  "u{sona pi nasin lili}";
+    let physicsTag =  "u{sona lon}";
+    let politicsTag =  "u{sona pi lawa ma}";
+    let aiTag =  "u{sona pi jan ala}";
+    let ukrainianTag =  "u{toki Ukawina}";
+    let programmingTag =  "u{toki pi ilo sona}";
+    let engineeringTag =  "u{pali musi}";
+    let linguisticsTag =  "u{sona toki}";
+    let personalChannelTag =  "u{lipu jan}";
+    let astronomyTag =  "u{sona pi mun}";
 
     let channels = [
         {name: "Мудреныч", id: "UCGLsHbMw8WCOB6tu0sKyG9w", tags: [russianTag, historyTag]},
@@ -312,7 +312,7 @@
 
     shuffle(channels);
     channelsElement.innerHTML = channels.map(c =>
-        `<li><a href="https://www.youtube.com/channel/${c.id}" target="_blank" rel="noopener noreferrer">${c.name}</a>: ${c.tags.join("en{, }tok{u{  }}")}</li>`
+        `<li><a href="https://www.youtube.com/channel/${c.id}" target="_blank" rel="noopener noreferrer">${c.name}</a>: ${c.tags.join("u{  }")}</li>`
     ).join("\n");
 </script>
 
