@@ -1,0 +1,17 @@
+#include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(int argc, char *argv[])
+{
+    char *test = strdup("World");
+
+    HTML html = <>
+        <h1>
+            Hello, %(test)%!
+        </h1>
+    </>;
+
+    printf("%s\n", html);
+    return EXIT_SUCCESS;
+}
