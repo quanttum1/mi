@@ -1,0 +1,113 @@
+#include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include "da.h"
+
+struct WebTree;
+
+typedef struct {
+    char *name;
+    struct WebTree *content;
+} WebTreeChild;
+
+struct WebTree {
+    char *(*index)();
+    da(WebTreeChild) children;
+};
+
+typedef struct WebTree WebTree;
+
+HTML page_home() {
+    return <>
+        <h1>
+            Welcome to my website!
+            <a href="a">Go to page A</a>
+            <a href="b">Go to page B</a>
+            <a href="b/c">Go to page C</a>
+        </h1>
+    </>;
+}
+
+HTML page_a() {
+    return <>
+        <h1>
+            Welcome to Page A!
+            <a href="/">Go home</a>
+        </h1>
+    </>;
+}
+
+HTML page_b() {
+    return <>
+        <h1>
+            Welcome to Page B!
+            <a href="/">Go home</a>
+            <a href="c">Go to page C</a>
+        </h1>
+    </>;
+}
+
+HTML page_c() {
+    return <>
+        <h1>
+            Welcome to Page C!
+            <a href="/">Go home</a>
+        </h1>
+    </>;
+}
+
+da(WebTree*) webtrees = {0};
+
+void begin_webtree() {
+    da_append(webtrees, malloc(sizeof(WebTree)));
+    *da_last(webtrees) = (WebTree){0};
+}
+
+void add_index(HTML (*page)()) {
+    da_last(webtrees)->index = page;
+}
+
+void add_children(char *name) {
+    WebTree *content = malloc(sizeof(WebTree));
+    *content = (WebTree){0};
+    da(WebTreeChild) children = da_last(webtrees)->children;
+    da_append(children, ((WebTreeChild){ .name = name, content = content }))
+    da_append(webtrees, content);
+}
+
+void end_children() {
+    size_t size = da_size(webtrees);
+    da_remove(webtrees, size);
+}
+
+void add_child(char *name, HTML (*page)()) {
+    add_children(name); {
+        add_index(page);
+    } end_children();
+}
+
+WebTree end_webtree() {
+    WebTree result = *da_last(webtrees);
+    free(da_last(webtrees));
+    da_remove(webtrees, da_size(webtrees) - 1);
+    return result;
+}
+
+int main(int argc, char *argv[]) {
+    begin_webtree(); {
+        add_index(page_home);
+        add_child("a", page_a);
+        printf("%zu", da_size(webtrees));
+        add_children("b"); {
+            printf("%zu", da_size(webtrees));
+            add_index(page_b);
+            printf("%zu", da_size(webtrees));
+            add_child("c", page_c);
+            printf("%zu", da_size(webtrees));
+        } end_children();
+        printf("%zu", da_size(webtrees));
+    } WebTree webtree = end_webtree();
+    printf("%zu", da_size(webtrees));
+
+    return EXIT_SUCCESS;
+}
