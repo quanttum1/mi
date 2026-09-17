@@ -1,0 +1,876 @@
+#include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <assert.h>
+#include "da.h"
+#include "./str_appendf.c"
+
+typedef HTML (*Layout)(HTML);
+
+char *current_language = {0};
+Layout current_layout = NULL;
+
+HTML tok(HTML translation) {
+    if (strcmp(current_language, "tok") == 0) return strdup(translation);
+    else return NULL;
+}
+
+HTML en(HTML translation) {
+    if (strcmp(current_language, "en") == 0) return strdup(translation);
+    else return NULL;
+}
+
+HTML ru(HTML translation) {
+    if (strcmp(current_language, "ru") == 0) return strdup(translation);
+    else return NULL;
+}
+
+HTML any(HTML tok, HTML en, HTML ru) {
+    char *result = NULL;
+
+    result = tok ? tok : result;
+    result = en ? en : result;
+    result = ru ? ru : result;
+
+    if (!result) {
+        printf("'%s' has no translation");
+        assert(0);
+    }
+
+    return result;
+}
+
+char *ucsur(char *sitelenLasina) {
+    char *wile = strdup("echo -n '");
+    str_appendf(&wile, "%s", sitelenLasina);
+    str_appendf(&wile, "' | sitelen-ucsur from");
+
+    FILE *fp = popen(wile, "r");
+    free(wile);
+
+    char *sitelenUcsur = strdup("");
+
+    int sitelen = 0;
+    while (1) {
+        sitelen = getc(fp);
+        if (sitelen == EOF) break;
+        str_appendf(&sitelenUcsur, "%c", sitelen);
+    }
+
+    pclose(fp);
+    return sitelenUcsur;
+}
+
+
+HTML layout(HTML page) {
+    return <>
+        <!DOCTYPE html>
+        <html>
+            <head>
+                <meta charset="UTF-8">
+                <title>tomo lili mi</title>
+                <link href="/style.css" rel="stylesheet">
+                <script>
+                    function goToLanguage(language) {
+                        let pathAfterLang = location.pathname.slice("/%(strdup(current_language))%".length);
+                        location.pathname = `/${language}${pathAfterLang}`;
+                    }
+                </script>
+            </head>
+            <body>
+                <div class="container">
+                    <header>
+                        <h1>
+                          <a href="/%(strdup(current_language))%">
+                            <img class="heart" src="/images/heart.png" alt="💖">
+                            %(ucsur("kasi kule Ana"))%
+                            <img class="heart" src="/images/heart.png" alt="💖">
+                          </a>
+                        </h1>
+                      <div>
+                        %(any(tok(""), en("<a href='javascript:goToLanguage(`tok`)'>"), ru("<a href='javascript:goToLanguage(`tok`)'>")))%
+                            %(ucsur("toki+pona"))%
+                        %(any(tok(""), en("</a>"), ru("</a>")))%
+                        |
+                        %(any(tok("<a href='javascript:goToLanguage(`ru`)'>"), en("<a href='javascript:goToLanguage(`ru`)'>"), ru("")))%
+                            русский
+                        %(any(tok("</a>"), en("</a>"), ru("")))%
+                        |
+                        %(any(tok("<a href='javascript:goToLanguage(`en`)'>"), en(""), ru("<a href='javascript:goToLanguage(`en`)'>")))%
+                            English
+                        %(any(tok("</a>"), en(""), ru("</a>")))%
+                      </div>
+                    </header>
+
+                    %(page)%
+
+                    <section>
+                      <p>
+                        %(ucsur("o awen pona mute"))% 🩷
+                      </p>
+                      <div id="buttons">
+                        <a href="https://discord.gg/bFBzkvAWqc" target="_blank" rel="noopener noreferrer">
+                          <img src="https://mun.la/buttons/mapona_s.gif" alt="ma pona pi toki pona, a toki pona community on Discord" class="button">
+                        </a>
+
+                        <a href="https://discord.gg/W2HJZxPrQ8" target="_blank" rel="noopener noreferrer">
+                          <img src="https://mun.la/buttons/kamasona_s.gif" alt="kama sona, a toki pona community on Discord" class="button">
+                        </a>
+
+                        <a href="https://discord.gg/5AVHaJfKQ3" target="_blank" rel="noopener noreferrer">
+                          <img src="https://mun.la/buttons/mamun_s.gif" alt="ma mun, a toki pona community on Discord" class="button">
+                        </a>
+                      </div>
+                      <div>
+                      </div>
+
+                      <div id="sike">
+                        <div style="position:relative; width:88px;">
+                          <img src="https://sike.pona.la/assets/sike-pona.gif" style="width:100%; height:auto; image-rendering:pixelated; display:block;" alt="sike pona">
+                          <a href="https://sike.pona.la/jan/jan Luna Wani/prev.html"
+                             style="position:absolute; left:9%; top:19%; width:23%; height:65%;"></a>
+                          <a href="https://sike.pona.la/"
+                             style="position:absolute; left:39%; top:19%; width:24%; height:65%;"></a>
+                          <a href="https://sike.pona.la/jan/jan Luna Wani/next.html"
+                             style="position:absolute; left:69%; top:19%; width:23%; height:65%;"></a>
+                        </div>
+                      </div>
+                    </section>
+                </div>
+            </body>
+        </html>
+    </>;
+}
+
+HTML lipu_tomo() {
+    return <>
+        %(any(
+            tok(ucsur("toki a  mi kasi kule Ana  ma pi ilo sona la mi kepeken nimi ni kin:")),
+            en("hii!! my toki pona name is kasi kule Ana."),
+            ru("привет!! моё имя в токи поне: каси куле Ана.")
+        ))%
+            <!-- TODO(2026-09-13 12:46:01): o pona e pakala lon ilo `sitelen-ucsur`. ni la toki ni o pona tawa lukin:
+            tok(ucsur("\\Quantiie\\ anu \\Quantt\\ anu \\Quantum One\\ anu sama  ")), --!>
+        %(any(
+            tok(ucsur("\\Quantiie\\\\anu \\Quantt\\\\anu \\Quantum One\\\\anu sama  ")),
+            en("online i also use these nicknames: Quantiie, Quantt, Quantum One or similar."),
+            ru("онлайн я также использую ники Quantiie, Quantt, Quantum One или похожие.")
+        ))%
+        %(any(
+            tok(ucsur("mi pini e tenpo \\<span id=\"ageSpan\"></span>\\ pi sike suno")),
+            en("i'm <span id=\"ageSpan\"></span> years old. i use she/her pronouns"),
+            ru("мне <span id=\"ageSpan\"></span> лет. я использую местоимения она/её")
+        ))%
+
+        <section>
+            <h2>
+                %(any(
+                    tok(ucsur("ijo ni li pona tawa mi:")),
+                    en("things that i like:"),
+                    ru("вещи которые мне нравятся:")
+                ))%
+            </h2>
+
+            <ul>
+                %(any(
+                    tok(ucsur("toki pi ilo sona  toki+pona  pali pi mani ala tan wile  telo kasi pimeja  sitelen tan luka  kasi kule  ko musi suwi  soweli suwi  kalama musi")),
+                    en("programming, <a href=\"https://tokipona.net/\" target=\"_blank\" rel=\"noopener noreferrer\">toki pona</a>, open-source/volunteering, tea, drawing, flowers, cute plushies, cute animals, music"),
+                    ru("программирование, токи пона, опен-сорс/волонтерство, чай, рисование, цветы, плюшевые игрушки, милые животные, музыка")
+                ))%
+            </ul>
+        </section>
+
+        <section>
+            <h2>
+                %(any(
+                    tok(ucsur("pali mi:")),
+                    en("stuff i do:"),
+                    ru("чем я занимаюсь:")
+                ))%
+            </h2>
+            <ul>
+                <li>
+                %(any(
+                    tok(ucsur("open li tenpo 2026 pi sike suno la mi pali e")),
+                    en("since 2026 i develop"),
+                    ru("начиная с 2026, я разрабатываю")
+                ))%
+                <a href="https://neome-app.com" target="_blank" rel="noopener noreferrer">
+                    %(any(
+                        tok(ucsur("ilo Nejomi")),
+                        en("the NEOME app"),
+                        ru("приложение NEOME")
+                    ))%
+                </a>
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>
+                %(any(
+                    tok(ucsur("kulupu lipu ni la:")),
+                    en("other pages:"),
+                    ru("другие страницы:")
+                ))%
+            </h2>
+            <ul>
+                <li>
+                    <a href="ijo-sin">
+                        %(any(
+                            tok(ucsur("ijo sin mi la")),
+                            en("blog:"),
+                            ru("блог:")
+                        ))%
+                    </a>
+                    %(any(
+                        tok(ucsur("mi pana e ijo pi wile mi lon ni  . wile .")),
+                        en("i post whatever i want here :3"),
+                        ru("я публикую то, что мне нравится тут :3")
+                    ))%
+                </li>
+
+                <li>
+                    <a href="kalama-musi-pona">
+                        %(any(
+                            tok(ucsur("kalama musi la")),
+                            en("my playlist:"),
+                            ru("мой плейлист:")
+                        ))%
+                    </a>
+                    %(any(
+                        tok(ucsur("kalama musi ni li pona tawa mi")),
+                        en("the list of songs i listen a lot to"),
+                        ru("песни которые я часто слушаю")
+                    ))%
+                </li>
+
+                <li>
+                    <a href="jan-pona-pi-ilo-jutu">
+                        %(any(
+                            tok(ucsur("jan pona pi ilo Jutu la")),
+                            en("good channels:"),
+                            ru("хорошие каналы:")
+                        ))%
+                    </a>
+                    %(any(
+                        tok(ucsur("jan ni li pali e sitelen tawa pona tawa ma Jutu")),
+                        en("the list of channels i follow on youtube"),
+                        ru("youtube каналы на которые я подписана")
+                    ))%
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>
+                %(any(
+                    tok(ucsur("mi lon ilo ante:")),
+                    en("my profiles:"),
+                    ru("мои профили:")
+                ))%
+            </h2>
+
+            <ul>
+                <li>
+                    <a href="https://github.com/quanttum1/" target="_blank" rel="noopener noreferrer">
+                        %(any(
+                            tok(ucsur("mi [\\quanttum1\\] lon ilo Kita")),
+                            en("i'm quanttum1 on github"),
+                            ru("я quanttum1 на github")
+                        ))%
+                    </a>
+                </li>
+
+                <li>
+                    <a href="https://t.me/kasi_kule_Ana" target="_blank" rel="noopener noreferrer">
+                        %(any(
+                            tok(ucsur("mi [\\kasi_kule_Ana\\] lon ilo Telekan")),
+                            en("i'm kasi_kule_Ana on telegram"),
+                            ru("я kasi_kule_Ana в телеграме")
+                        ))%
+                    </a>
+                </li>
+
+                <li>
+                    <img src="/images/email/%(strdup(current_language))%.png" alt="%(any(
+                        tok("mi ken ala pana e nasin mi pi lipu ilo :( tan li ni: mi ni la ilo ala li ken pana e jaki tawa mi"),
+                        en("i can't give my email as a text because i might receive spam if i do :("),
+                        ru("я не могу дать мой email текстом потому что иначе я могу получать спам :(")
+                    ))%">
+                </li>
+            </ul>
+        </section>
+
+        <script>
+        function smallerThan5(n) {
+          if (n >= 5) throw new Error("n must be < 5");
+          let result = [];
+
+          while (n > 1) {
+            result.push('%(ucsur("tu"))%');
+            n -= 2;
+          }
+
+          if (n === 1) {
+            result.push('%(ucsur("wan"))%');
+          }
+
+          return result;
+        }
+
+        function smallerThan20(n) {
+          if (n >= 20) throw new Error("n must be < 20");
+          let result = [];
+
+          let beforeLuka = Math.floor(n / 5);
+          if (beforeLuka > 1) {
+            result = result.concat(smallerThan5(beforeLuka));
+          }
+          if (beforeLuka) {
+            result.push('%(ucsur("luka"))%');
+          }
+
+          result = result.concat(smallerThan5(n % 5));
+          return result;
+        }
+
+        function toNnppl(n) {
+          let result = [];
+
+          if (n >= 100) {
+            result.push(toNnppl(Math.floor(n / 100)));
+            result.push('%("ale")%');
+          }
+
+          n %= 100;
+
+          let beforeMute = Math.floor(n / 20);
+          if (beforeMute > 1) {
+            result = result.concat(smallerThan5(beforeMute));
+          }
+          if (beforeMute) {
+            result.push('%(ucsur("mute"))%');
+          }
+
+          result = result.concat(smallerThan20(n % 20));
+
+          if (result.length === 0) result = ['%(ucsur("ala"))%'];
+          return result.join('');
+        }
+
+        let birthday = new Date("2007-08-29");
+        let now = new Date();
+        let age = Math.floor((now - birthday) / (365.25 * 24 * 60 * 60 * 1000));
+
+        // addEventListener("load", () => {
+            %(any(
+                tok("ageSpan.innerText = toNnppl(age);"),
+                en("ageSpan.innerText = age;"),
+                ru("ageSpan.innerText = age;")
+            ))%
+        // });
+
+        </script>
+    </>;
+}
+
+HTML nanpa_wan() {
+    return <>
+        <script>
+            location.pathname = "/tok" + location.pathname;
+        </script>
+    </>;
+}
+
+typedef struct {
+    char *path;
+    HTML content;
+} Page;
+
+typedef da(Page) PageList;
+
+PageList global_page_list = {0};
+char *current_path;
+
+void begin_page_list() {
+    current_path = strdup("/");
+}
+
+void add_index(HTML content) {
+    if (current_layout != NULL) {
+        content = current_layout(content);
+    }
+
+    char *page_path = strdup("");
+    str_appendf(&page_path, "%sindex.html", current_path);
+    da_append(global_page_list, ((Page){ .path = page_path, .content = content }));
+}
+
+void begin_children(char *path) {
+    str_appendf(&current_path, "%s/", path);
+}
+
+char *get_parent(char* with_child) {
+    with_child = strdup(with_child); // 'Cause it's up to the caller to free it
+    assert(strlen(with_child) > 1 && "No root");
+
+    int new_len = -1;
+    for (int i = strlen(with_child) - 2; i >= 0; i--) {
+        if (with_child[i] == '/') {
+            new_len = i + 1;
+            break;
+        }
+    }
+
+    if (new_len == -1) assert(!"No '/' found in the path");
+
+    with_child = realloc(with_child, new_len + 1);
+    with_child[new_len] = '\0';
+
+    return with_child;
+}
+
+void end_children() {
+    char *last_path = current_path;
+    current_path = get_parent(current_path);
+    free(last_path);
+}
+
+void add_child(char *path, HTML content) {
+    begin_children(path); {
+        add_index(content);
+    } end_children();
+}
+
+PageList end_page_list() {
+    assert(strcmp(current_path, "/") == 0);
+    free(current_path);
+    PageList result = global_page_list;
+    global_page_list = (PageList){0};
+    return result;
+}
+
+// TODO(2026-09-09 13:50:13): maybe let it accept directory to export to
+void export(PageList page_list) {
+    system("rm -r docs/*");
+
+    for (size_t i = 0; i < da_size(page_list); i++) {
+        char *command = strdup("mkdir -p docs");
+        char *parent = get_parent(page_list[i].path);
+        str_appendf(&command, parent);
+        free(parent);
+        system(command);
+        free(command);
+
+        char *file_path = strdup("docs");
+        str_appendf(&file_path, page_list[i].path);
+        FILE *fp = fopen(file_path, "w");
+        fprintf(fp, "%s", page_list[i].content);
+        fclose(fp);
+        free(file_path);
+    }
+
+    system("cp -r public/* docs");
+}
+
+void begin_layout(Layout layout) {
+    assert(current_layout == NULL);
+    current_layout = layout;
+}
+
+void end_layout() {
+    assert(current_layout != NULL);
+}
+
+HTML ijo_sin() {
+    return <>
+        <!-- <section> --!>
+            <h2>
+                %(any(
+                    tok(ucsur("mi ante mute e lipu ni  tenpo pini la mi toki e pali mi taso lon ni  tenpo kama la mi toki e ijo ale pi wile mi  kin la toki pi tenpo pini li sitelen pona ala li sitelen Lasina")),
+                    en("i changed this page a lot. in the past i only talked about my workings and achievements on this page. in the future i will talk about anything i want to"),
+                    ru("в прошлом на этой странице я только рассказывала про мои работы и достижения на этой странице. в будущем я буду писать о всём о чём хочу (ёщё в прошлом эта страница не была на русском, поэтому снизу только токи пона. можешь переключить на английский, если тебе так понятнее)")
+                ))%
+            </h2>
+        <!-- </section> --!>
+
+        <section>
+        </section>
+
+        <b>
+            %(any(
+                tok("tenpo mun nanpa 7:"),
+                en("july:"),
+                ru("tenpo mun nanpa 7:")
+            ))%
+        </b>
+
+        <ul>
+            %(any(
+                tok("<span>tenpo suno nanpa 20:</span>"),
+                en("<span>20-th:</span>"),
+                ru("<span>tenpo suno nanpa 20:</span>")
+            ))%
+            <ul>
+                %(any(
+                    tok("<li>ilo Telekan la mi pali e ilo ni: jan li toki tawa mi kepeken lipu pi ilo sona la mi kama jo e mu lon ilo Telekan. ilo sona mi li ken ala pali la ni kin la mi kute li lukin e mu mi kepeken ilo \"<a href=\"https://healthchecks.io\">https://healthchecks.io</a>\" tawa ni</li>"),
+                    en("<li>i set up a telegram bot that redirects any emails i receive. also i set up a bot that pings me if my server is down. i use <a href=\"https://healthchecks.io\">https://healthchecks.io</a> for this</li>"),
+                    ru("<li>ilo Telekan la mi pali e ilo ni: jan li toki tawa mi kepeken lipu pi ilo sona la mi kama jo e mu lon ilo Telekan. ilo sona mi li ken ala pali la ni kin la mi kute li lukin e mu mi kepeken ilo \"<a href=\"https://healthchecks.io\">https://healthchecks.io</a>\" tawa ni</li>")
+                ))%
+            </ul>
+        </ul>
+
+        <ul>
+            %(any(
+                tok("<span>tenpo suno nanpa 4:</span>"),
+                en("<span>4-th:</span>"),
+                ru("<span>tenpo suno nanpa 4:</span>")
+            ))%
+            <ul>
+                %(any(
+                    tok("<li>mi pini e pali mute lon <a href=\"https://neome-app.com\">ilo Nejomi</a>  sina ante e ijo lon ilo nanpa wan la ante ni li kama lon ilo nanpa tu sina</li>"),
+                    en("<li>i finished a big update for <a href=\"https://neome-app.com\">NEOME</a>; your devices now can syncronise</li>"),
+                    ru("<li>mi pini e pali mute lon <a href=\"https://neome-app.com\">ilo Nejomi</a>  sina ante e ijo lon ilo nanpa wan la ante ni li kama lon ilo nanpa tu sina</li>")
+                ))%
+            </ul>
+        </ul>
+
+        <b>
+            %(any(
+                tok("tenpo mun nanpa 6:"),
+                en("june:"),
+                ru("tenpo mun nanpa 6:")
+            ))%
+        </b>
+        <ul>
+            %(any(
+                tok("<span>tenpo suno nanpa 23:</span>"),
+                en("<span>23-th:</span>"),
+                ru("<span>tenpo suno nanpa 23:</span>")
+            ))%
+            <ul>
+                %(any(
+                    tok("<li>mi pini e tomo sona mi  aa</li>"),
+                    en("<li>i finished my school!!</li>"),
+                    ru("<li>mi pini e tomo sona mi  aa</li>")
+                ))%
+            </ul>
+
+            %(any(
+                tok("<span>tenpo suno nanpa 19:</span>"),
+                en("<span>19-th:</span>"),
+                ru("<span>tenpo suno nanpa 19:</span>")
+            ))%
+            <ul>
+                %(any(
+                    tok("<li>mi pali e ni: lipu toki pi ilo sona li kama tawa ilo mi la mi lukin e mu lon ilo Telekan</li>"),
+                    en("<li>i made it so that when i receive an email, i get a notification on Telegram</li>"),
+                    ru("<li>mi pali e ni: lipu toki pi ilo sona li kama tawa ilo mi la mi lukin e mu lon ilo Telekan</li>")
+                ))%
+            </ul>
+
+            %(any(
+                tok("<span>tenpo suno nanpa 15:</span>"),
+                en("<span>15-th:</span>"),
+                ru("<span>tenpo suno nanpa 15:</span>")
+            ))%
+            <ul>
+                %(any(
+                    tok("<li>mi pali e wile pana <a href=\"https://github.com/pona-la/tokipona.net/pull/22\">ni</a></li>"),
+                    en("<li>i made this pull request <a href=\"https://github.com/pona-la/tokipona.net/pull/22\">this pull request</a></li>"),
+                    ru("<li>mi pali e wile pana <a href=\"https://github.com/pona-la/tokipona.net/pull/22\">ni</a></li>")
+                ))%
+            </ul>
+        </ul>
+
+        <b>
+            %(any(
+                tok("tenpo mun nanpa 5:"),
+                en("may:"),
+                ru("tenpo mun nanpa 5:")
+            ))%
+        </b>
+        <ul>
+            %(any(
+                tok("<span>tenpo suno nanpa 24:</span>"),
+                en("<span>24-th:</span>"),
+                ru("<span>tenpo suno nanpa 24:</span>")
+            ))%
+            <ul>
+                %(any(
+                    tok("<li>mi open pali pona  taso tenpo ni la mi wile ala toki e pali ni  :)</li>"),
+                    en("<li>i started to word on something very cool, but for now i don't want to tell what it is :)</li>"),
+                    ru("<li>mi open pali pona  taso tenpo ni la mi wile ala toki e pali ni  :)</li>")
+                ))%
+
+                %(any(
+                    tok("<li>mi pali e wile pali <a href=\"https://github.com/netfri25/sitelen-ucsur/pull/6\">ni</a> tawa ilo pi sitelen Ukusu</li>"),
+                    en("<li>i made <a href=\"https://github.com/netfri25/sitelen-ucsur/pull/6\">this PR</a> to sitelen-ucsur</li>"),
+                    ru("<li>mi pali e wile pali <a href=\"https://github.com/netfri25/sitelen-ucsur/pull/6\">ni</a> tawa ilo pi sitelen Ukusu</li>")
+                ))%
+            </ul>
+
+            %(any(
+                tok("<span>tenpo suno nanpa 23:</span>"),
+                en("<span>23-th:</span>"),
+                ru("<span>tenpo suno nanpa 23:</span>")
+            ))%
+            <ul>
+                %(any(
+                    tok("<li>mi pali e sitelen sin lon pona nimi mi  sina ken lukin e ona lon <a href=\"https://github.com/quanttum1/\">lipu mi pi ilo Kita</a></li>"),
+                    en("<li>i made a new pfp, you can see it on <a href=\"https://github.com/quanttum1/\">my github</a></li>"),
+                    ru("<li>mi pali e sitelen sin lon pona nimi mi  sina ken lukin e ona lon <a href=\"https://github.com/quanttum1/\">lipu mi pi ilo Kita</a></li>")
+                ))%
+            </ul>
+
+            %(any(
+                tok("<span>tenpo suno nanpa 22:</span>"),
+                en("<span>22-th:</span>"),
+                ru("<span>tenpo suno nanpa 22:</span>")
+            ))%
+            <ul>
+                %(any(
+                    tok("<li>tenpo kama la mi kepeken ilo \"tmux\" lon tenpo mute</li>"),
+                    en("<li>since now i use tmux all the time</li>"),
+                    ru("<li>tenpo kama la mi kepeken ilo \"tmux\" lon tenpo mute</li>")
+                ))%
+            </ul>
+
+            %(any(
+                tok("<span>tenpo suno nanpa 18:</span>"),
+                en("<span>18-th:</span>"),
+                ru("<span>tenpo suno nanpa 18:</span>")
+            ))%
+            <ul>
+                %(any(
+                    tok("<li>mi pana e wile pana<a href=\"https://github.com/netfri25/sitelen-ucsur/pull/5\">ni</a>tawa ilo pi sitelen Usisu</li>"),
+                    en("<li>i made <a href=\"https://github.com/netfri25/sitelen-ucsur/pull/5\">this pull request</a> to sitelen-ucsur</li>"),
+                    ru("<li>mi pana e wile pana<a href=\"https://github.com/netfri25/sitelen-ucsur/pull/5\">ni</a>tawa ilo pi sitelen Usisu</li>")
+                ))%
+            </ul>
+
+            %(any(
+                tok("<span>tenpo suno nanpa 15:</span>"),
+                en("<span>15-th:</span>"),
+                ru("<span>tenpo suno nanpa 15:</span>")
+            ))%
+            <ul>
+                %(any(
+                    tok("<li>mi pona e wile pana<a href=\"https://github.com/pona-la/ma.pona.la/pull/1\">ni  </a>wile mi la ona li jaki ala lon tenpo ni</li>"),
+                    en("<li>i improved <a href=\"https://github.com/pona-la/ma.pona.la/pull/1\">this PR. </a>hopefully it's better now</li>"),
+                    ru("<li>mi pona e wile pana<a href=\"https://github.com/pona-la/ma.pona.la/pull/1\">ni  </a>wile mi la ona li jaki ala lon tenpo ni</li>")
+                ))%
+            </ul>
+
+            %(any(
+                tok("<span>tenpo suno nanpa 11:</span>"),
+                en("<span>11-th:</span>"),
+                ru("<span>tenpo suno nanpa 11:</span>")
+            ))%
+            <ul>
+                %(any(
+                    tok("<li>mi pana e wile pana<a href=\"https://github.com/netfri25/sitelen-ucsur/pull/2\">ni</a>tawa ilo pi sitelen Jusisu</li>"),
+                    en("<li>i made <a href=\"https://github.com/netfri25/sitelen-ucsur/pull/2\">this</a> PR to sitelen-ucsur</li>"),
+                    ru("<li>mi pana e wile pana<a href=\"https://github.com/netfri25/sitelen-ucsur/pull/2\">ni</a>tawa ilo pi sitelen Jusisu</li>")
+                ))%
+            </ul>
+            <ul>
+                %(any(
+                    tok("<li>mi pana e wile pana<a href=\"https://github.com/pona-la/ma.pona.la/pull/1\">ni</a>tawa lipu te <a href=\"https://ma.pona.la/\">ma.pona.la</a> to  taso mi sona ala e ni: ona li pona ala pona</li>"),
+                    en("<li>i made <a href=\"https://github.com/pona-la/ma.pona.la/pull/1\">this PR </a>to <a href=\"https://ma.pona.la/\">ma.pona.la</a>. though, i don't know yet if it's gonna be accepted</li>"),
+                    ru("<li>mi pana e wile pana<a href=\"https://github.com/pona-la/ma.pona.la/pull/1\">ni</a>tawa lipu te <a href=\"https://ma.pona.la/\">ma.pona.la</a> to  taso mi sona ala e ni: ona li pona ala pona</li>")
+                ))%
+            </ul>
+            <br>
+
+            %(any(
+                tok("<span>tenpo suno nanpa 8:</span>"),
+                en("<span>8-th:</span>"),
+                ru("<span>tenpo suno nanpa 8:</span>")
+            ))%
+            <ul>
+                %(any(
+                    tok("<li>mi kama jo e wile pana<a href=\"https://github.com/quanttum1/meowfiles/pull/2\">ni</a>  mi pana e ona tawa poki mi</li>"),
+                    en("<li>i accepted <a href=\"https://github.com/quanttum1/meowfiles/pull/2\">this PR </a>to my repository</li>"),
+                    ru("<li>mi kama jo e wile pana<a href=\"https://github.com/quanttum1/meowfiles/pull/2\">ni</a>  mi pana e ona tawa poki mi</li>")
+                ))%
+            </ul>
+            <br>
+
+            %(any(
+                tok("<span>tenpo suno nanpa 6:</span>"),
+                en("<span>6-th:</span>"),
+                ru("<span>tenpo suno nanpa 6:</span>")
+            ))%
+            <ul>
+                %(any(
+                    tok("<li>mi lon e lipu mi pi jan wan tawa https://jan-luna-wani.li.pona.la/</li>"),
+                    en("<li>i hosted my personal website on https://jan-luna-wani.li.pona.la/</li>"),
+                    ru("<li>mi lon e lipu mi pi jan wan tawa https://jan-luna-wani.li.pona.la/</li>")
+                ))%
+            </ul>
+            <br>
+
+            %(any(
+                tok("<span>tenpo suno nanpa 4:</span>"),
+                en("<span>4-th:</span>"),
+                ru("<span>tenpo suno nanpa 4:</span>")
+            ))%
+            <ul>
+                %(any(
+                    tok("<li>ilo sitelen mi li ken pana e sitelen Jusisu tawa mi  ilo mi li kepeken ilo<a href=\"https://github.com/netfri25/sitelen-ucsur\">ni</a>lon insa</li>"),
+                    en("<li>i made a script to get sitelen UCSUR</li>"),
+                    ru("<li>ilo sitelen mi li ken pana e sitelen Jusisu tawa mi  ilo mi li kepeken ilo<a href=\"https://github.com/netfri25/sitelen-ucsur\">ni</a>lon insa</li>")
+                ))%
+            </ul>
+            <ul>
+                %(any(
+                    tok("<li>mi pali e te API to lili mute tawa ilo monsi pi pali kulupu mi  mi pilin pona ala tan pali ni tan ni: mi kepeken ilo Semini  kin la ni li wile e tenpo mute a</li>"),
+                    en("<li>i worked on API for our group project</li>"),
+                    ru("<li>mi pali e te API to lili mute tawa ilo monsi pi pali kulupu mi  mi pilin pona ala tan pali ni tan ni: mi kepeken ilo Semini  kin la ni li wile e tenpo mute a</li>")
+                ))%
+            </ul>
+            <br>
+        </ul>
+    </>;
+}
+
+HTML kalama_musi_pona() {
+    // TODO(2026-09-17 10:18:56): kalama_musi_pona
+    return <>
+        %(any(
+            tok(ucsur("mi awen pali e lipu ni  . ike .")),
+            en("i am still working on this page :("),
+            ru("я всё ещё работаю над этой страницей :(")
+        ))%
+    </>;
+}
+
+HTML jan_pona_pi_ilo_jutu() {
+    return <>
+        %(any(
+            tok(ucsur("lipu ni li sina lukin e jan pona pi ilo Jutu  sitelen tawa ona li pona   mi lukin e ona   mute ona li toki Inli anu toki Lusi")),
+            en("on this page you'll find channels on YouTube that i watch. most of them are in English or in Russian"),
+            ru("на этой странице ты увидишь каналы на ютубе которые я смотрю. большинство из них на английском или на русском")
+        ))%
+
+        <section>
+        </section>
+
+        <script>
+            let historyTag = "%(any(tok(ucsur("sona pi tenpo pini")), en("history"), ru("история")))%";
+            let russianTag = "%(any(tok(ucsur("toki Lusi")), en("russian"), ru("на русском")))%";
+            let scienceTag = "%(any(tok(ucsur("sona")), en("science"), ru("наука")))%";
+            let psychologyTag = "%(any(tok(ucsur("sona pi lawa jan")), en("psychology"), ru("психология")))%";
+            let biologyTag = "%(any(tok(ucsur("sona pi soweli pi kasi pi sama")), en("biology"), ru("биология")))%";
+            let investigationTag = "%(any(tok(ucsur("alasa sona")), en("investigation"), ru("расследование")))%";
+            let englishTag = "%(any(tok(ucsur("toki Inli")), en("english"), ru("на английском")))%";
+            let mathsTag = "%(any(tok(ucsur("sona nanpa")), en("maths"), ru("математика")))%";
+            let chemistryTag = "%(any(tok(ucsur("sona pi nasin lili")), en("chemistry"), ru("химия")))%";
+            let physicsTag = "%(any(tok(ucsur("sona lon")), en("physics"), ru("физика")))%";
+            let politicsTag = "%(any(tok(ucsur("sona pi lawa ma")), en("politics"), ru("политика")))%";
+            let aiTag = "%(any(tok(ucsur("sona pi jan ala")), en("ai safety"), ru("безопасность ИИ")))%";
+            let ukrainianTag = "%(any(tok(ucsur("toki Ukawina")), en("ukrainian"), ru("на украинском")))%";
+            let programmingTag = "%(any(tok(ucsur("toki pi ilo sona")), en("programming"), ru("программирование")))%";
+            let engineeringTag = "%(any(tok(ucsur("pali musi")), en("engineering"), ru("инженерия")))%";
+            let linguisticsTag = "%(any(tok(ucsur("sona toki")), en("linguistics"), ru("лингвистика")))%";
+            let personalChannelTag = "%(any(tok(ucsur("lipu jan")), en("personal channel"), ru("личный канал")))%";
+            let astronomyTag = "%(any(tok(ucsur("sona pi mun")), en("astronomy"), ru("астрономия")))%";
+
+            let channels = [
+                {name: "Мудреныч", id: "UCGLsHbMw8WCOB6tu0sKyG9w", tags: [russianTag, historyTag]},
+                {name: "Onigiri", id: "UCzdmz_lLWT_dPqOvFjXAMVg", tags: [russianTag, programmingTag]},
+                {name: "SciOne", id: "UCSaVoRErW4kqKsDqExs2MXA", tags: [russianTag, scienceTag]},
+                {name: "Правое полушарие Интроверта", id: "UCWcUsw5EBULSF4Eul0DLULg", tags: [russianTag, psychologyTag]},
+                {name: "Хамибин 2.0", id: "UCOsAqQmUsk5bBl4ydsTNS-g", tags: [russianTag, biologyTag]},
+                {name: "Dagon", id: "UCP_FacffygRMGA4CMpO-0XA", tags: [russianTag, psychologyTag]},
+                {name: "ЧД", id: "UCzdhDZnwLa5_-xUletu1DhQ", tags: [russianTag, psychologyTag]},
+                {name: "Utopia Show", id: "UC8M5YVWQan_3Elm-URehz9w", tags: [russianTag, investigationTag]},
+                {name: "Vectozavr", id: "UCq95P8i1jJLLegYcm0Y2YTw", tags: [russianTag, programmingTag, mathsTag]},
+                {name: "GEO", id: "UCyjf5CxCNEc9ALYlalBiKDQ", tags: [russianTag, historyTag]},
+                {name: "Veritasium", id: "UCHnyfMqiRRG1u-2MsSQLbXA", tags: [englishTag, scienceTag]},
+                {name: "Artur Sharifov", id: "UCxtTXA5DU1bZHLLomu83zVw", tags: [russianTag, russianTag]},
+                {name: "Wild Mathing", id: "UCj0Od_id0gPbmwZ65U8xwrw", tags: [russianTag, mathsTag]},
+                {name: "Thoisoi", id: "UCjAmQ-4NL3UZX0W_nmjn4_w", tags: [russianTag, chemistryTag]},
+                {name: "Физика от Побединского", id: "UCQdPrDypfQeY5euAPbdc11g", tags: [russianTag, physicsTag]},
+                {name: "MyGap", id: "UCCROBQj3rdGNc-E_aMpbV_A", tags: [russianTag, politicsTag]},
+                {name: "Rational Animations", id: "UCgqt1RE0k0MIr0LoyJRy2lg", tags: [englishTag, aiTag]},
+                {name: "Клятий раціоналіст", id: "UCioz7pLeEpBNrFfwHb2m-pA", tags: [ukrainianTag, scienceTag]},
+                {name: "Tsoding Daily", id: "UCrqM0Ym_NbK1fqeQG2VIohg", tags: [englishTag, programmingTag]},
+                {name: "Thoughty2", id: "UCRlICXvO4XR4HMeEB9JjDlA", tags: [englishTag, historyTag, investigationTag]},
+                {name: "Доктор Грег", id: "UC6DxE5GWRxZKwNdcOzV5hWw", tags: [russianTag, scienceTag]},
+                {name: "NileRed", id: "UCFhXFikryT4aFcLkLw2LBLA", tags: [englishTag, chemistryTag]},
+                {name: "NileBlue", id: "UC1D3yD4wlPMico0dss264XA", tags: [englishTag, chemistryTag]},
+                {name: "Integza", id: "UC2avWDLN1EI3r1RZ_dlSxCw", tags: [englishTag, engineeringTag]},
+                {name: "Steve Mould", id: "UCEIwxahdLz7bap-VDs9h35A", tags: [englishTag, scienceTag]},
+                {name: "Kurzgesagt – In a Nutshell", id: "UCsXVk37bltHxD1rDPwtNM8Q", tags: [englishTag, scienceTag]},
+                {name: "Up and Atom", id: "UCSIvk78tK2TiviLQn4fSHaw", tags: [englishTag, physicsTag]},
+                {name: "GEO2", id: "UC3yjMTYgk-OUslwfq6J2Jog", tags: [russianTag, historyTag]},
+                {name: "Robert Miles AI Safety ", id: "UCLB7AzTwc6VFZrBsO2ucBMg", tags: [englishTag, aiTag]},
+                {name: "Mults", id: "UC5YYDtjudfqxGwnJI-32qYQ", tags: [englishTag, programmingTag]},
+                {name: "RobWords", id: "UC4a9LfdavRlVMaSSWFdIciA", tags: [englishTag, linguisticsTag]},
+                {name: "Johnny Harris", id: "UCmGSJVG3mCRXVOP4yZrU1Dw", tags: [englishTag, politicsTag]},
+                {name: "Tom Stanton", id: "UC67gfx2Fg7K2NSHqoENVgwA", tags: [englishTag, engineeringTag]},
+                {name: "Primer", id: "UCKzJFdi57J53Vr_BkTfN3uQ", tags: [englishTag, biologyTag, mathsTag]},
+                {name: "Александр Панчин", id: "UC2q4mHrzoR48mwSuAYtVPtQ", tags: [russianTag, scienceTag]},
+                {name: "LaurieWired", id: "UCJXa3_WNNmIpewOtCHf3B0g", tags: [englishTag, programmingTag]},
+                {name: "Tim Station", id: "UCZYvU-ZWbgl1rJv0trRk_fA", tags: [englishTag, engineeringTag]},
+                {name: "Файб", id: "UCRQPJnq3IFviqmIxb9_5FaQ", tags: [russianTag, historyTag]},
+                {name: "Bread on Penguins", id: "UCwHwDuNd9lCdA7chyyquDXw", tags: [englishTag, personalChannelTag, programmingTag]},
+                {name: "Siliconversations", id: "UCaItA_xyCNvDSf-DLkzClRg", tags: [englishTag, aiTag]},
+                {name: "PerriKaryal", id: "UC_7SR20ovhbKc-k3NwMcgWQ", tags: [englishTag, engineeringTag]},
+                {name: "Александр Штефанов", id: "UCVVNJJXC7TQgPpAjQdgrqNw", tags: [russianTag, politicsTag]},
+                {name: "Филолог всея Руси", id: "UCL6IdMqhSfbZyym_Zio_vOQ", tags: [russianTag, linguisticsTag]},
+                {name: "Virginia Bēowulf · English Studies", id: "UCKMGLK-Inu1lReNdbeYBgOA", tags: [russianTag, linguisticsTag]},
+                {name: "Улица Шкловского", id: "UCUmeLZofGMhO5lVOHUEUU2A", tags: [russianTag, astronomyTag]},
+                {name: "lipamanka", id: "UCelq3xUdjS47C_svPFVRO0g", tags: [englishTag, linguisticsTag]},
+                {name: "Art of the Problem", id: "UCotwjyJnb-4KW7bmsOoLfkg", tags: [englishTag, scienceTag]},
+            ];
+
+            // https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+            function shuffle(array) {
+              let currentIndex = array.length;
+
+              // While there remain elements to shuffle...
+              while (currentIndex != 0) {
+
+                // Pick a remaining element...
+                let randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex--;
+
+                // And swap it with the current element.
+                [array[currentIndex], array[randomIndex]] = [
+                  array[randomIndex], array[currentIndex]];
+              }
+            }
+
+            shuffle(channels);
+            channelsElement.innerHTML = channels.map(c =>
+                `<li><a href="https://www.youtube.com/channel/${c.id}" target="_blank" rel="noopener noreferrer">${c.name}</a>: ${c.tags.join("%(any(tok(ucsur("  ")), en(", "), ru(", ")))%")}</li>`
+            ).join("\n");
+        </script>
+    </>;
+}
+
+int main(int argc, char *argv[]) {
+    begin_page_list(); {
+        add_index(nanpa_wan());
+        begin_layout(layout); {
+            char* languages[] = { "tok", "en", "ru" };
+            for (size_t i = 0; i < (sizeof(languages) / sizeof(languages[0])); i++) {
+                current_language = languages[i];
+                begin_children(current_language); {
+                    add_index(lipu_tomo());
+                    add_child("ijo-sin", ijo_sin());
+                    add_child("kalama-musi-pona", kalama_musi_pona());
+                    add_child("jan-pona-pi-ilo-jutu", jan_pona_pi_ilo_jutu());
+                } end_children();
+            }
+        } end_layout();
+    } PageList page_list = end_page_list();
+
+    export(page_list);
+
+    return EXIT_SUCCESS;
+}

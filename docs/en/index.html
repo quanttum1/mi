@@ -1,381 +1,226 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>tomi lili mi</title>
 
-    <style>
+        <!DOCTYPE html>
+        <html>
+            <head>
+                <meta charset="UTF-8">
+                <title>tomo lili mi</title>
+                <link href="/style.css" rel="stylesheet">
+                <script>
+                    function goToLanguage(language) {
+                        let pathAfterLang = location.pathname.slice("/en".length);
+                        location.pathname = `/${language}${pathAfterLang}`;
+                    }
+                </script>
+            </head>
+            <body>
+                <div class="container">
+                    <header>
+                        <h1>
+                          <a href="/en">
+                            <img class="heart" src="/images/heart.png" alt="💖">
+                            󱤗󱤞󱦐󱤀󱤽󱦜󱦑
+                            <img class="heart" src="/images/heart.png" alt="💖">
+                          </a>
+                        </h1>
+                      <div>
+                        <a href='javascript:goToLanguage(`tok`)'>
+                            󱥬󱦖󱥔
+                        </a>
+                        |
+                        <a href='javascript:goToLanguage(`ru`)'>
+                            русский
+                        </a>
+                        |
+                        
+                            English
+                        
+                      </div>
+                    </header>
 
-      @media {
-        :root {
-          --bg: #0f172a;
-          --text: #d9d2cf;
-          --muted: #9ca3af;
-          --accent: #818cf8;
-          --card: #111827;
-          --border: #99928f;
+                    
+        hii!! my toki pona name is kasi kule Ana.
+            <!-- TODO(2026-09-13 12:46:01): o pona e pakala lon ilo `sitelen-ucsur`. ni la toki ni o pona tawa lukin:
+            tok(ucsur("\\Quantiie\\ anu \\Quantt\\ anu \\Quantum One\\ anu sama  ")), --!>
+        online i also use these nicknames: Quantiie, Quantt, Quantum One or similar.
+        i'm <span id="ageSpan"></span> years old. i use she/her pronouns
+
+        <section>
+            <h2>
+                things that i like:
+            </h2>
+
+            <ul>
+                programming, <a href="https://tokipona.net/" target="_blank" rel="noopener noreferrer">toki pona</a>, open-source/volunteering, tea, drawing, flowers, cute plushies, cute animals, music
+            </ul>
+        </section>
+
+        <section>
+            <h2>
+                stuff i do:
+            </h2>
+            <ul>
+                <li>
+                since 2026 i develop
+                <a href="https://neome-app.com" target="_blank" rel="noopener noreferrer">
+                    the NEOME app
+                </a>
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>
+                other pages:
+            </h2>
+            <ul>
+                <li>
+                    <a href="ijo-sin">
+                        blog:
+                    </a>
+                    i post whatever i want here :3
+                </li>
+
+                <li>
+                    <a href="kalama-musi-pona">
+                        my playlist:
+                    </a>
+                    the list of songs i listen a lot to
+                </li>
+
+                <li>
+                    <a href="jan-pona-pi-ilo-jutu">
+                        good channels:
+                    </a>
+                    the list of channels i follow on youtube
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>
+                my profiles:
+            </h2>
+
+            <ul>
+                <li>
+                    <a href="https://github.com/quanttum1/" target="_blank" rel="noopener noreferrer">
+                        i'm quanttum1 on github
+                    </a>
+                </li>
+
+                <li>
+                    <a href="https://t.me/kasi_kule_Ana" target="_blank" rel="noopener noreferrer">
+                        i'm kasi_kule_Ana on telegram
+                    </a>
+                </li>
+
+                <li>
+                    <img src="/images/email/en.png" alt="i can't give my email as a text because i might receive spam if i do :(">
+                </li>
+            </ul>
+        </section>
+
+        <script>
+        function smallerThan5(n) {
+          if (n >= 5) throw new Error("n must be < 5");
+          let result = [];
+
+          while (n > 1) {
+            result.push('󱥮');
+            n -= 2;
+          }
+
+          if (n === 1) {
+            result.push('󱥳');
+          }
+
+          return result;
         }
-      }
 
-      * {
-        box-sizing: border-box;
-      }
+        function smallerThan20(n) {
+          if (n >= 20) throw new Error("n must be < 20");
+          let result = [];
 
-      @font-face {
-        font-family: agaveNerd;
-        src: url(/fonts/AgaveNerdFontMono-Regular.ttf);
-      }
+          let beforeLuka = Math.floor(n / 5);
+          if (beforeLuka > 1) {
+            result = result.concat(smallerThan5(beforeLuka));
+          }
+          if (beforeLuka) {
+            result.push('󱤭');
+          }
 
-      @font-face {
-        font-family: nasinNanpa;
-        src: url(/fonts/nasin-nanpa-4.0.2-UCSUR.otf);
-      }
-
-      html, body {
-        margin: 0;
-        font-family: nasinNanpa, agaveNerd;
-        font-size: 1.1rem;
-        background: var(--bg);
-        color: var(--text);
-        line-height: 1.6;
-      }
-
-      .container {
-        max-width: 720px;
-        margin: 0 auto;
-        padding: 2rem 1.5rem;
-      }
-
-      header {
-        margin-bottom: 2.5rem;
-      }
-
-      h1 {
-        font-size: 2.2rem;
-        margin: 0 0 0.3rem;
-      }
-
-      .subtitle {
-        color: var(--muted);
-        font-size: 1.1rem;
-      }
-
-      section {
-        margin-top: 2.5rem;
-      }
-
-      h1 {
-        margin-bottom: 0.75rem;
-        border-bottom: 1px solid var(--border);
-        padding-bottom: 0.25rem;
-      }
-
-      .card {
-        background: var(--card);
-        border: 1px solid var(--border);
-        border-radius: 10px;
-        padding: 1rem;
-        margin-bottom: 1rem;
-      }
-
-      a {
-        color: var(--accent);
-        text-decoration: none;
-      }
-
-      a:hover {
-        text-decoration: underline;
-      }
-
-      footer {
-        margin-top: 3rem;
-        font-size: 0.9rem;
-        color: var(--muted);
-        text-align: center;
-      }
-
-      header {
-        font-size: 3rem;
-        text-align: center;
-        margin-bottom: 0.75rem;
-        border-bottom: 1px solid var(--border);
-        padding-bottom: 0.25rem;
-      }
-
-      .links a {
-        margin-right: 1rem;
-      }
-
-      #heart {
-        display: inline;
-        height: 1em;
-      }
-
-      header > a {
-        color: #f285aa;
-      }
-
-      h2 {
-        margin: 0;
-      }
-
-      ul {
-        margin-top: 0;
-      }
-
-      .button {
-        width: 88px;
-        height: 31px;
-        box-shadow: 0.15em 0.15em 0 0 #000;
-        image-rendering: pixelated;
-        text-decoration: none;
-        transition: transform 0.03s ease-in-out,
-                    box-shadow 0.03s ease-in-out,
-                    filter 0.03s ease-in-out;
-      }
-
-      .button:hover {
-        /* filter: brightness(1.1); */
-        /* scale: 1.1; */
-        transform: translate(-0.15em, -0.15em);
-        box-shadow: 0.3em 0.3em 0 0 #000;
-      }
-
-      .button:active {
-        box-shadow: 0 0 0 0 #000;
-        transform: translate(0.15em, 0.15em);
-        /* filter: brightness(0.9); */
-      }
-
-      @media (max-width: 470px) {
-        .button {
-          width: 66px;
-          height: 31px;
+          result = result.concat(smallerThan5(n % 5));
+          return result;
         }
-      }
 
-      @media (min-width: 600px) {
-        .button {
-          width: 110px;
-          height: 38.75px;
+        function toNnppl(n) {
+          let result = [];
+
+          if (n >= 100) {
+            result.push(toNnppl(Math.floor(n / 100)));
+            result.push('ale');
+          }
+
+          n %= 100;
+
+          let beforeMute = Math.floor(n / 20);
+          if (beforeMute > 1) {
+            result = result.concat(smallerThan5(beforeMute));
+          }
+          if (beforeMute) {
+            result.push('󱤼');
+          }
+
+          result = result.concat(smallerThan20(n % 20));
+
+          if (result.length === 0) result = ['󱤂'];
+          return result.join('');
         }
-      }
 
-      @media (min-width: 900px) {
-        .button {
-          width: 132px;
-          height: 46.5px;
-        }
-      }
+        let birthday = new Date("2007-08-29");
+        let now = new Date();
+        let age = Math.floor((now - birthday) / (365.25 * 24 * 60 * 60 * 1000));
 
-      @media (min-width: 1200px) {
-        .button {
-          width: 176px;
-          height: 62px;
-        }
-      }
-      @media (min-width: 1500px) {
-        .button {
-          width: 220px;
-          height: 77.5px;
-        }
-      }
+        // addEventListener("load", () => {
+            ageSpan.innerText = age;
+        // });
 
-      @media (min-width: 1800px) {
-        .button {
-          width: 264px;
-          height: 93px;
-        }
-      }
-
-      #buttons {
-        display: flex;
-        justify-content: center;
-        gap: 10px;
-      }
-
-      #sike {
-        display: flex;
-        justify-content: center;
-      }
-    </style>
-  </head>
-
-  <body>
-    <div class="container">
-
-      <header>
-        <a href="/en">
-          󱤑󱦐󱤭󱦜󱤽󱦜󱦑󱦐󱥳󱦝󱤌󱦑 <img id="heart" src="/images/heart.png" alt="💖">
-        </a>
-      </header>
-
-      
-
-
-
-
-
-
-  <p>
-    hii! my toki pona name is jan Luna Wani. i also sometimes use these nicknames online:
-    Quantiie, Quantt, Quantum One etc.
-    i'm <span id="ageSpan"></span> years old
-  </p>
-
-
-<section>
-  
-  <h2>things that i like:</h2>
-  <ul>
+        </script>
     
-    programming, toki pona, open-source/volunteering, tea, drawing, flowers, cute plushies, cute animals, music
-  </ul>
-</section>
 
-<section>
-  
-  <h2>big projects of mine:</h2>
-  <ul>
+                    <section>
+                      <p>
+                        󱥄󱤈󱥔󱤼 🩷
+                      </p>
+                      <div id="buttons">
+                        <a href="https://discord.gg/bFBzkvAWqc" target="_blank" rel="noopener noreferrer">
+                          <img src="https://mun.la/buttons/mapona_s.gif" alt="ma pona pi toki pona, a toki pona community on Discord" class="button">
+                        </a>
+
+                        <a href="https://discord.gg/W2HJZxPrQ8" target="_blank" rel="noopener noreferrer">
+                          <img src="https://mun.la/buttons/kamasona_s.gif" alt="kama sona, a toki pona community on Discord" class="button">
+                        </a>
+
+                        <a href="https://discord.gg/5AVHaJfKQ3" target="_blank" rel="noopener noreferrer">
+                          <img src="https://mun.la/buttons/mamun_s.gif" alt="ma mun, a toki pona community on Discord" class="button">
+                        </a>
+                      </div>
+                      <div>
+                      </div>
+
+                      <div id="sike">
+                        <div style="position:relative; width:88px;">
+                          <img src="https://sike.pona.la/assets/sike-pona.gif" style="width:100%; height:auto; image-rendering:pixelated; display:block;" alt="sike pona">
+                          <a href="https://sike.pona.la/jan/jan Luna Wani/prev.html"
+                             style="position:absolute; left:9%; top:19%; width:23%; height:65%;"></a>
+                          <a href="https://sike.pona.la/"
+                             style="position:absolute; left:39%; top:19%; width:24%; height:65%;"></a>
+                          <a href="https://sike.pona.la/jan/jan Luna Wani/next.html"
+                             style="position:absolute; left:69%; top:19%; width:23%; height:65%;"></a>
+                        </div>
+                      </div>
+                    </section>
+                </div>
+            </body>
+        </html>
     
-    <li>since 2026, i develop and maintain <a href="https://neome-app.com" target="_blank" rel="noopener noreferrer">the NEOME app</a></li>
-  </ul>
-</section>
-
-<section>
-  
-  <h2>other pages:</h2>
-
-  <ul>
-    
-    <li><a href="pali-suno.html">this week i did</a>: i try to make weekly updates to it</li>
-
-    
-    <li><a href="kalama-musi-pona.html">my playlist</a>: the list of songs that i listen a lot to</li>
-
-    
-    <li><a href="jan-pona.html">good channels</a>: the list of channels i follow on YouTube</li>
-  </ul>
-</section>
-
-<section>
-  
-  <h2>my profiles:</h2>
-  <ul>
-    <!--  -->
-    <!-- <li>you can <a href="https://discord.gg/ejAuWq5u">join my discord server</a>, i am @quantiie on discord</li> -->
-
-    
-    <li><a href="https://github.com/quanttum1">my github</a></li>
-
-    
-    <li>i am <a href="https://t.me/quantiie">@quantiie on Telegram</a></li>
-
-    <li><img src="/images/email/en.png" alt="mi ken ala pana e ni: lon seme la sina ken pana e lipu kepeken ilo sona tawa mi :( tan li ni: ilo ala li ken pana e jaki tawa mi"></li>
-  </ul>
-</section>
-
-<script>
-function smallerThan5(n) {
-  if (n >= 5) throw new Error("n must be < 5");
-  let result = [];
-
-  while (n > 1) {
-    result.push('󱥮');
-    n -= 2;
-  }
-
-  if (n === 1) {
-    result.push('󱥳');
-  }
-
-  return result;
-}
-
-function smallerThan20(n) {
-  if (n >= 20) throw new Error("n must be < 20");
-  let result = [];
-
-  let beforeLuka = Math.floor(n / 5);
-  if (beforeLuka > 1) {
-    result = result.concat(smallerThan5(beforeLuka));
-  }
-  if (beforeLuka) {
-    result.push('󱤭');
-  }
-
-  result = result.concat(smallerThan5(n % 5));
-  return result;
-}
-
-function toNnppl(n) {
-  let result = [];
-
-  if (n >= 100) {
-    result.push(toNnppl(Math.floor(n / 100)));
-    result.push('󱤄');
-  }
-
-  n %= 100;
-
-  let beforeMute = Math.floor(n / 20);
-  if (beforeMute > 1) {
-    result = result.concat(smallerThan5(beforeMute));
-  }
-  if (beforeMute) {
-    result.push('󱤼');
-  }
-
-  result = result.concat(smallerThan20(n % 20));
-
-  if (result.length === 0) result = ['󱤂'];
-  return result.join('');
-}
-
-let birthday = new Date("2007-08-29");
-let now = new Date();
-let age = Math.floor((now - birthday) / (365.25 * 24 * 60 * 60 * 1000));
-
-ageSpan.innerText = age;
-</script>
-
-
-
-      <section>
-        <p>
-          󱥄󱤈󱥔󱤼 🫶
-        </p>
-        <div id="buttons">
-          <a href="https://discord.gg/bFBzkvAWqc" target="_blank" rel="noopener noreferrer">
-            <img src="https://mun.la/buttons/mapona_s.gif" alt="ma pona pi toki pona, a toki pona community on Discord" class="button">
-          </a>
-
-          <a href="https://discord.gg/W2HJZxPrQ8" target="_blank" rel="noopener noreferrer">
-            <img src="https://mun.la/buttons/kamasona_s.gif" alt="kama sona, a toki pona community on Discord" class="button">
-          </a>
-
-          <a href="https://discord.gg/5AVHaJfKQ3" target="_blank" rel="noopener noreferrer">
-            <img src="https://mun.la/buttons/mamun_s.gif" alt="ma mun, a toki pona community on Discord" class="button">
-          </a>
-        </div>
-        <div>
-        </div>
-
-        <div id="sike">
-          <div style="position:relative; width:88px;">
-            <img src="https://sike.pona.la/assets/sike-pona.gif" style="width:100%; height:auto; image-rendering:pixelated; display:block;" alt="sike pona">
-            <a href="https://sike.pona.la/jan/jan Luna Wani/prev.html"
-               style="position:absolute; left:9%; top:19%; width:23%; height:65%;"></a>
-            <a href="https://sike.pona.la/"
-               style="position:absolute; left:39%; top:19%; width:24%; height:65%;"></a>
-            <a href="https://sike.pona.la/jan/jan Luna Wani/next.html"
-               style="position:absolute; left:69%; top:19%; width:23%; height:65%;"></a>
-          </div>
-        </div>
-      </section>
-    </div>
-  </body>
-</html>
-
-
