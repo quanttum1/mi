@@ -1,0 +1,8 @@
+<script>
+    if (!location.pathname.startsWith("/tok") && !location.pathname.startsWith("/ru") && !location.pathname.startsWith("/ua")) {
+        location.replace("/tok" + location.pathname);
+    }
+    else {
+        document.write("404");
+    }
+</script>
