@@ -58,6 +58,7 @@ section {
 
 h1 {
   font-size: 3rem;
+  color: #f285aa;
   margin-bottom: 0.75rem;
   padding-bottom: 0.25rem;
 }
@@ -100,10 +101,6 @@ header {
 .heart {
   display: inline;
   height: 1em;
-}
-
-header > a {
-  color: #f285aa;
 }
 
 h2 {
