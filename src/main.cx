@@ -486,6 +486,15 @@ void end_layout() {
 HTML ijo_sin() {
     return <>
         <!-- <section> --!>
+            <h2>2026-10-05 18:40</h2>
+            %(any(
+                tok(ucsur("tenpo ni la mi pilin pi pona mute  tenpo pini mute la jan pona ala en olin ala li lon poka mi. tenpo ni la jan pon li lon a poka mi. kin la jan pi tomo pali sama kin li pona tawa mi")),
+                en("i feel very good. in the past, i felt lonely. but now i have good friends around me. people at my work are very nice too"),
+                ru("я чувствую себя очень хорошо. раньше мне было одиноко. но сейчас у меня есть хорошие друзья вокруг меня. люди на моей работе тоже очень приятные")
+            ))%
+        <!-- </section> --!>
+
+        <section>
             <h2>
                 %(any(
                     tok(ucsur("mi ante mute e lipu ni  tenpo pini la mi toki e pali mi taso lon ni  tenpo kama la mi toki e ijo ale pi wile mi  kin la toki pi tenpo pini li sitelen pona ala li sitelen Lasina")),
@@ -493,7 +502,7 @@ HTML ijo_sin() {
                     ru("в прошлом на этой странице я только рассказывала про мои работы и достижения на этой странице. в будущем я буду писать о всём о чём хочу (ёщё в прошлом эта страница не была на русском, поэтому снизу только токи пона. можешь переключить на английский, если тебе так понятнее)")
                 ))%
             </h2>
-        <!-- </section> --!>
+        </section>
 
         <section>
         </section>
