@@ -816,7 +816,7 @@ HTML jan_pona_pi_ilo_jutu() {
                 {name: "Kurzgesagt – In a Nutshell", id: "UCsXVk37bltHxD1rDPwtNM8Q", tags: [englishTag, scienceTag]},
                 {name: "Up and Atom", id: "UCSIvk78tK2TiviLQn4fSHaw", tags: [englishTag, physicsTag]},
                 {name: "GEO2", id: "UC3yjMTYgk-OUslwfq6J2Jog", tags: [russianTag, historyTag]},
-                {name: "Robert Miles AI Safety ", id: "UCLB7AzTwc6VFZrBsO2ucBMg", tags: [englishTag, aiTag]},
+                {name: "Robert Miles AI Safety", id: "UCLB7AzTwc6VFZrBsO2ucBMg", tags: [englishTag, aiTag]},
                 {name: "Mults", id: "UC5YYDtjudfqxGwnJI-32qYQ", tags: [englishTag, programmingTag]},
                 {name: "RobWords", id: "UC4a9LfdavRlVMaSSWFdIciA", tags: [englishTag, linguisticsTag]},
                 {name: "Johnny Harris", id: "UCmGSJVG3mCRXVOP4yZrU1Dw", tags: [englishTag, politicsTag]},
