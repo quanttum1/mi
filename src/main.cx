@@ -764,7 +764,7 @@ HTML jan_pona_pi_ilo_jutu() {
             ru("на этой странице ты увидишь каналы на ютубе которые я смотрю. большинство из них на английском или на русском")
         ))%
 
-        <section>
+        <section id="channelsElement">
         </section>
 
         <script>
