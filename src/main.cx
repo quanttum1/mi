@@ -83,7 +83,7 @@ HTML layout(HTML page) {
                         <h1>
                           <a href="/%(strdup(current_language))%" style="color: #ef5592;">
                             <img class="heart" src="/images/heart.png" alt="💖">
-                            %(ucsur("kasi kule Ana"))%
+                            %(ucsur("kasi kule [a n a]"))%
                             <img class="heart" src="/images/heart.png" alt="💖">
                           </a>
                         </h1>
