@@ -180,7 +180,7 @@ HTML lipu_tomo() {
             </ul>
         </section>
 
-        <section>
+        <!-- <section>
             <h2>
                 %(any(
                     tok(ucsur("pali mi:")),
@@ -204,7 +204,7 @@ HTML lipu_tomo() {
                 </a>
                 </li>
             </ul>
-        </section>
+        </section> -->
 
         <section>
             <h2>
