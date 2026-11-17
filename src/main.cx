@@ -474,12 +474,12 @@ void export(PageList page_list) {
     system("cp -r public/* docs");
 }
 
-void begin_layout(Layout layout) {
+void use_layout(Layout layout) {
     assert(current_layout == NULL);
     current_layout = layout;
 }
 
-void end_layout() {
+void stop_using_layout() {
     assert(current_layout != NULL);
 }
 
@@ -931,7 +931,7 @@ HTML jan_pona_pi_ilo_jutu() {
 int main(int argc, char *argv[]) {
     begin_page_list(); {
         add_index(nanpa_wan());
-        begin_layout(layout); {
+        use_layout(layout); {
             char* languages[] = { "tok", "en", "ru" };
             for (size_t i = 0; i < (sizeof(languages) / sizeof(languages[0])); i++) {
                 current_language = languages[i];
@@ -942,7 +942,7 @@ int main(int argc, char *argv[]) {
                     add_child("jan-pona-pi-ilo-jutu", jan_pona_pi_ilo_jutu());
                 } end_children();
             }
-        } end_layout();
+        } stop_using_layout();
     } PageList page_list = end_page_list();
 
     export(page_list);
