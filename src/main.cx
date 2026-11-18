@@ -61,6 +61,32 @@ char *ucsur(char *sitelenLasina) {
     return sitelenUcsur;
 }
 
+// ni li sin, taso tenpo kama la mi weka e ucsur pi sin ala
+char *ucsurs(char *sitelenLasina) {
+    char *wile = strdup("echo -n '");
+    for (int i = 0; sitelenLasina[i]; i++) {
+        str_appendf(&wile, "\\");
+        str_appendf(&wile, "%d", sitelenLasina[i] / (8 * 8));
+        str_appendf(&wile, "%d", sitelenLasina[i] / 8 % 8);
+        str_appendf(&wile, "%d", sitelenLasina[i] % 8);
+    }
+    str_appendf(&wile, "' | sitelen-ucsur from");
+
+    FILE *fp = popen(wile, "r");
+    free(wile);
+
+    char *sitelenUcsur = strdup("");
+
+    int sitelen = 0;
+    while (1) {
+        sitelen = getc(fp);
+        if (sitelen == EOF) break;
+        str_appendf(&sitelenUcsur, "%c", sitelen);
+    }
+
+    pclose(fp);
+    return sitelenUcsur;
+}
 
 HTML layout(HTML page) {
     return <>
@@ -485,14 +511,25 @@ void stop_using_layout() {
 
 HTML ijo_sin() {
     return <>
-        <!-- <section> --!>
+        <!-- <section> -->
+            <h2>2026-11-18 01:08</h2>
+            %(any(
+                tok(ucsurs("o lukin e nasin ilo pi lipu ni  ona li musi  lili la ona li sama \\<a href=\"https://youtu.be/dkNv3KGOFT0\">\\nasin ni\\</a>\\ pi jan Sosin, mi lukin e ijo ona la mi wile pali e ijo sama. mute pi ilo mi li kepeken toki ilo Si, taso mi pana e lipu pi toki ilo HTML lon insa ona. sina wile lukin e ale la o tawa \\<a href=\"https://github.com/quanttum1/mi/\">\\poki pi lipu ni lon ilo Kita\\</a>\\")),
+                en("look how i generate this site. i was highly inspired by <a href=\"https://youtu.be/dkNv3KGOFT0\">this video by Tsoding</a>. most of it is in C, but i use HTML inside of it. you can see all the in <a href=\"https://github.com/quanttum1/mi/\">this repo</a>"),
+                ru("смотри как я генерирую этот сайт. этот способ был по большей части вдохновлён <a href=\"https://youtu.be/dkNv3KGOFT0\">этит видео от Tsoding</a>. большая часть кода на С, но я также использую НТМL внутри него. ты можешь посмотреть весь код в <a href=\"https://github.com/quanttum1/mi/\">этом репозитории</a>")
+            ))%
+            <img style="width: 100%; height: auto; margin: 1em;" src="/images/nasin-ilo/1.jpg">
+            <img style="width: 100%; height: auto; margin: 1em;" src="/images/nasin-ilo/2.jpg">
+        <!-- </section> -->
+
+        <section>
             <h2>2026-10-05 18:40</h2>
             %(any(
                 tok(ucsur("tenpo ni la mi pilin pi pona mute  tenpo pini mute la jan pona ala en olin ala li lon poka mi. tenpo ni la jan pon li lon a poka mi. kin la jan pi tomo pali sama kin li pona tawa mi")),
                 en("i feel very good. in the past, i felt lonely. but now i have good friends around me. people at my work are very nice too"),
                 ru("я чувствую себя очень хорошо. раньше мне было одиноко. но сейчас у меня есть хорошие друзья вокруг меня. люди на моей работе тоже очень приятные")
             ))%
-        <!-- </section> --!>
+        </section>
 
         <section>
             <h2>
